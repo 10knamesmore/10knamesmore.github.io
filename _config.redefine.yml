@@ -340,7 +340,7 @@ comment:
   config:
     # Waline comment system. See https://waline.js.org/
     waline:
-      serverUrl: https://example.example.com # Waline server URL. e.g. https://example.example.com
+      serverUrl: https://waline-test-7j71t1lc9-10knamesmores-projects.vercel.app/ # Waline server URL. e.g. https://example.example.com
       lang: zh-CN # Waline language. e.g. zh-CN, en-US. See https://waline.js.org/guide/client/i18n.html
       emoji: [
           https://unpkg.com/@waline/emojis@1.2.0/qq,
@@ -353,10 +353,10 @@ comment:
       reaction: true # Waline reaction. See https://waline.js.org/reference/client/props.html#reaction
     # Gitalk comment system. See https://github.com/gitalk/gitalk
     gitalk:
-      clientID: # GitHub Application Client ID
-      clientSecret: # GitHub Application Client Secret
-      repo: # GitHub repository
-      owner: # GitHub repository owner
+      clientID: Ov23lidWVOnlJXBRpPA5 # GitHub Application Client ID
+      clientSecret: 36ec87dd088839bc9d04793723285c5e529b8e75 # GitHub Application Client Secret
+      repo: myBlogComments # GitHub repository
+      owner: 10knamesmore # GitHub repository owner
       proxy: # GitHub repository proxy
     # Twikoo comment system. See https://twikoo.js.org/
     twikoo:
