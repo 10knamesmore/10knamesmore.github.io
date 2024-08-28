@@ -13,40 +13,25 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="https://10knamesmore.github.io/2024/08/28/第一卷胶卷/"/>
+    <link rel="canonical" href="https://10knamesmore.github.io/2024/08/28/最说人话的vim编辑器入门博客-一/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="2021，还在用我的sony nex6 with 七工匠55mm 1.4.我知道这不是必然，但高中的我在这穷酸配置上用习惯了，再加上很幸运.”混”的那些社群都不是器材党,风光党(当时只有一些十分浅薄的理解,认为这样的审美倾向是有问题的,之后可能会发些blog说说现在对这些大行其道的趋势的想法). 最后没有活成整天对G大师镜头流口水的样子. 如果用中性点的词说的话,当时我审美偏向所谓”新锐“,”个人">
+        <meta name="description" content="这是一个面向几乎零基础(像我刚学那样)人群的博客,所以会有点啰嗦写下来的东西都是我在学习过程中想到的,希望也能分享出来 相信你经常刷到,网络上很多言论如  “vim就是世界上最牛逼的编辑器” “vim配置好能提高xx倍效率” “没学过vim不配成为程序员”  就算你不是个geek,肯定多少都会好奇,这些老毕登说的上古神器vim到底是个什么东西.😡 也有很多人第一次打开vim,按半天键盘先是发现屏">
 <meta property="og:type" content="article">
-<meta property="og:title" content="第一卷胶卷">
-<meta property="og:url" content="https://10knamesmore.github.io/2024/08/28/%E7%AC%AC%E4%B8%80%E5%8D%B7%E8%83%B6%E5%8D%B7/index.html">
+<meta property="og:title" content="最说人话的Vim编辑器入门博客(一)">
+<meta property="og:url" content="https://10knamesmore.github.io/2024/08/28/%E6%9C%80%E8%AF%B4%E4%BA%BA%E8%AF%9D%E7%9A%84Vim%E7%BC%96%E8%BE%91%E5%99%A8%E5%85%A5%E9%97%A8%E5%8D%9A%E5%AE%A2-%E4%B8%80/index.html">
 <meta property="og:site_name" content="王二的博客">
-<meta property="og:description" content="2021，还在用我的sony nex6 with 七工匠55mm 1.4.我知道这不是必然，但高中的我在这穷酸配置上用习惯了，再加上很幸运.”混”的那些社群都不是器材党,风光党(当时只有一些十分浅薄的理解,认为这样的审美倾向是有问题的,之后可能会发些blog说说现在对这些大行其道的趋势的想法). 最后没有活成整天对G大师镜头流口水的样子. 如果用中性点的词说的话,当时我审美偏向所谓”新锐“,”个人">
+<meta property="og:description" content="这是一个面向几乎零基础(像我刚学那样)人群的博客,所以会有点啰嗦写下来的东西都是我在学习过程中想到的,希望也能分享出来 相信你经常刷到,网络上很多言论如  “vim就是世界上最牛逼的编辑器” “vim配置好能提高xx倍效率” “没学过vim不配成为程序员”  就算你不是个geek,肯定多少都会好奇,这些老毕登说的上古神器vim到底是个什么东西.😡 也有很多人第一次打开vim,按半天键盘先是发现屏">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://10knamesmore.github.io/images/film/c200/id_1.jpg">
-<meta property="og:image" content="https://10knamesmore.github.io/images/film/c200/id_2.jpg">
-<meta property="og:image" content="https://10knamesmore.github.io/images/film/c200/id_3.jpg">
-<meta property="og:image" content="https://10knamesmore.github.io/images/film/c200/id_4.jpg">
-<meta property="og:image" content="https://10knamesmore.github.io/images/film/c200/id_5.jpg">
-<meta property="og:image" content="https://10knamesmore.github.io/images/film/c200/id_6.jpg">
-<meta property="og:image" content="https://10knamesmore.github.io/images/film/c200/id_7.jpg">
-<meta property="og:image" content="https://10knamesmore.github.io/images/film/c200/id_8.jpg">
-<meta property="og:image" content="https://10knamesmore.github.io/images/film/c200/id_9.jpg">
-<meta property="og:image" content="https://10knamesmore.github.io/images/film/c200/id_10.jpg">
-<meta property="og:image" content="https://10knamesmore.github.io/images/film/c200/id_11.jpg">
-<meta property="og:image" content="https://10knamesmore.github.io/images/film/c200/id_12.jpg">
-<meta property="og:image" content="https://10knamesmore.github.io/images/film/c200/id_13.jpg">
-<meta property="og:image" content="https://10knamesmore.github.io/images/film/c200/id_14.jpg">
-<meta property="article:published_time" content="2024-08-28T02:58:00.000Z">
-<meta property="article:modified_time" content="2024-08-28T12:06:30.789Z">
+<meta property="og:image" content="https://10knamesmore.github.io/%E6%9C%80%E8%AF%B4%E4%BA%BA%E8%AF%9D%E7%9A%84Vim%E7%BC%96%E8%BE%91%E5%99%A8%E5%85%A5%E9%97%A8%E5%8D%9A%E5%AE%A2-%E4%B8%80/vimprogress.png">
+<meta property="article:published_time" content="2024-08-28T12:52:09.000Z">
+<meta property="article:modified_time" content="2024-08-28T15:36:59.765Z">
 <meta property="article:author" content="wanger">
-<meta property="article:tag" content="摄影">
-<meta property="article:tag" content="胶片">
-<meta property="article:tag" content="随想">
+<meta property="article:tag" content="vim">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://10knamesmore.github.io/images/film/c200/id_1.jpg">
+<meta name="twitter:image" content="https://10knamesmore.github.io/%E6%9C%80%E8%AF%B4%E4%BA%BA%E8%AF%9D%E7%9A%84Vim%E7%BC%96%E8%BE%91%E5%99%A8%E5%85%A5%E9%97%A8%E5%8D%9A%E5%AE%A2-%E4%B8%80/vimprogress.png">
     
     
     <!--- Icon Part-->
@@ -58,7 +43,7 @@
     
     <title>
         
-            第一卷胶卷 -
+            最说人话的Vim编辑器入门博客(一) -
         
         万余名的博客(alpha test)
     </title>
@@ -547,7 +532,7 @@
         <div class="article-title relative w-full">
             
                 <div class="w-full flex items-center pt-6 justify-start">
-                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">第一卷胶卷</h1>
+                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">最说人话的Vim编辑器入门博客(一)</h1>
                 </div>
             
             </div>
@@ -568,15 +553,15 @@
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2024-08-28 10:58</span>
-        <span class="mobile">2024-08-28 10:58</span>
+        <span class="desktop">2024-08-28 20:52:09</span>
+        <span class="mobile">2024-08-28 20:52:09</span>
         <span class="hover-info">创建</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-08-28 20:06:30</span>
-            <span class="mobile">2024-08-28 20:06:30</span>
+            <span class="desktop">2024-08-28 23:36:59</span>
+            <span class="mobile">2024-08-28 23:36:59</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -588,15 +573,7 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/%E6%91%84%E5%BD%B1/">摄影</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/%E8%83%B6%E7%89%87/">胶片</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/%E9%9A%8F%E6%83%B3/">随想</a>&nbsp;
+                        <a href="/tags/vim/">vim</a>&nbsp;
                     </li>
                 
             </ul>
@@ -622,82 +599,142 @@
 
 
         <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-            <p>2021，还在用我的sony nex6 with 七工匠55mm 1.4.我知道这不是必然，但高中的我在这穷酸配置上用习惯了，再加上很幸运.”混”的那些社群都不是器材党,风光党(当时只有一些十分浅薄的理解,认为这样的审美倾向是有问题的,之后可能会发些blog说说现在对这些大行其道的趋势的想法). 最后没有活成整天对G大师镜头流口水的样子.</p>
-<p>如果用中性点的词说的话,当时我审美偏向所谓”<strong>新锐</strong>“,”<strong>个人化</strong>“,”<strong>风格化</strong>“的东西.那没有任何意外的立即被色彩极具风格化的胶片吸引.而且我也一直很喜欢物理实体的东西,纸质书一类.胶片洗出来后真正能拿在手里,这样的<strong>触觉反馈</strong>是数码照片替代不了的.</p>
-<p>审美构图倾向,对我影响最大的毫无疑问是<strong>象曰</strong>.这似乎是一个由在德国学摄影的小伙伴做的一个分享摄影,艺术,生活的平台,现在似乎已经停止更新了,他们<a class="link"   target="_blank" rel="noopener" href="https://space.bilibili.com/396612905?spm_id_from=333.337.search-card.all.click" >B站频道 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>还在,有兴趣的可以看看.这个频道对当初还是高中的我影响无可估量的大,没想到摄影还能有这样的个人化表达,原来还有艺术摄影这个领域,还有这么些人在尝试扩展摄影的边界. 而且不只是摄影,包括审美观,价值观等等,很大程度的塑造了那个时期的我.(以至于当这个频道发生一些事故的时候,对我的打击无比巨大.) 回过头来看我可能会批判性的看待我那段<strong>自诩文艺青年</strong>的阶段,这个话题以后再聊吧,</p>
-<p>简单概括器材选择,直到现在我都认为如果只是和我一样追求色彩风格和实体照片的触感,傻瓜机超过500都是耍流氓.就是随便在咸鱼上找了个200多的,功能正常的傻瓜机.胶卷用的是富士C 200,对于这个胶卷”<strong>浓郁</strong>“的极具刻板印象的风格我也其实早听说过,真正洗出来扫描完发现确实,这色彩齁得慌,之后在没用过了.</p>
-<p>接下来是照片了, 因为很多是在学校拍的,有些拍到同学的正脸的也不方便放出来.也有很多不满意的没放出来.</p>
+            <p><em><strong>这是一个面向几乎零基础(像我刚学那样)人群的博客,所以会有点啰嗦</strong></em><br><em><strong>写下来的东西都是我在学习过程中想到的,希望也能分享出来</strong></em></p>
+<p>相信你经常刷到,网络上很多言论如</p>
+<blockquote>
+<p>“vim就是世界上最牛逼的编辑器”</p>
+<p>“vim配置好能提高xx倍效率”</p>
+<p>“没学过vim不配成为程序员”</p>
+</blockquote>
+<p>就算你不是个geek,肯定多少都会好奇,这些老毕登说的上古神器vim到底是个什么东西.😡</p>
+<p>也有很多人第一次打开vim,按半天键盘先是发现屏幕上什么都没有.</p>
+<p>不知道按了什么键后可以输入了,却不知道该怎么退出.😢</p>
+<p>因为vim是个运行在终端上的程序,结果只能通过退出终端来关闭vim,结果最后文件也没保存下来. 😇</p>
+<p>关于vim的诞生故事我就不讲了,B站上有很多讲的很好的视频.</p>
+<p>我想说的是,在现在这个时代还使用vim的原因无非以下几种:</p>
+<ol>
+<li><strong>轻量</strong>,不像vscode等于运行个浏览器</li>
+<li><strong>便捷,快速</strong>,手不离开键盘</li>
+<li><strong>扩展性</strong>极强,可以随意更改配置,可以自己编写脚本</li>
+</ol>
+<p>我感觉应该很少人会在意第一点,我甚至一直以来都是用vscode的vim插件. 😐</p>
+<p>不过原生vim和vscode(包括一些其他IDE)的配置方式不太一样,这点以后再说</p>
+<hr>
+<h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p>vim在windows上我没怎么用过,所以整篇教程都用linux为例.</p>
+<p>一般的发行版下载的镜像都自带Vim,如果真没有,一般也都可以用自带的包管理器下载.</p>
+<p>打开终端输入:</p>
+<ul>
+<li>Debian&#x2F;Ubuntu:</li>
+</ul>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt update </span><br><span class="line"><span class="built_in">sudo</span> apt install vim</span><br></pre></td></tr></table></figure></div>
+
+<ul>
+<li>Fedora:</li>
+</ul>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> dnf install vim</span><br></pre></td></tr></table></figure></div>
+
+<ul>
+<li>CentOS&#x2F;RHEL:</li>
+</ul>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> yum install vim</span><br></pre></td></tr></table></figure></div>
+
+<ul>
+<li>Arch Linux:</li>
+</ul>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> pacman -S vim</span><br></pre></td></tr></table></figure></div>
+
+<p>下载完成后输入下面查看vim是否安装成功</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim --version</span><br></pre></td></tr></table></figure></div>
+
+<p>要是出了这些东西就是安装成功了</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">VIM - Vi IMproved 8.1 (2018 May 18, 编译于 May 03 2024 02:36:35)</span><br><span class="line">包含补丁: 1-213, 1840, 214-579, 1969, 580-1848, 4975, 5023, 2110, 1849-1854, 1857, 1855-1857, 1331, 1858, 1858-1859, 1873, 1860-1969, 1992, 1970-1992, 2010, 1993-2068, 2106, 2069-2106, 2108, 2107-2109, 2109-2111, 2111-2112, 2112-2269, 3612, 3625, 3669, 3741, 1847</span><br><span class="line">修改者 team+vim@tracker.debian.org</span><br><span class="line">编译者 team+vim@tracker.debian.org</span><br><span class="line">巨型版本 无图形界面。  可使用(+)与不可使用(-)的功能:</span><br><span class="line">+acl               -farsi             -mouse_sysmouse    -tag_any_white</span><br><span class="line">+arabic            +file_in_path      +mouse_urxvt       -tcl</span><br><span class="line">+autocmd           +find_in_path      +mouse_xterm       +termguicolors</span><br><span class="line">+autochdir         +<span class="built_in">float</span>             +multi_byte        +terminal</span><br><span class="line">-autoservername    +folding           +multi_lang        +terminfo</span><br><span class="line">-balloon_eval      -footer            -mzscheme          +termresponse</span><br><span class="line">......</span><br></pre></td></tr></table></figure></div>
+
+<p>你弹出来的东西有可能和我有些细节不同,vim不同版本有些小功能差异(比如我的版本不能使用系统剪切板).</p>
+<p>但对于学习这个软件,基本的操作都相同.</p>
+<hr>
+<h2 id="Hello-vim"><a href="#Hello-vim" class="headerlink" title="Hello vim!"></a>Hello vim!</h2><p>在终端中输入</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim</span><br></pre></td></tr></table></figure></div>
+
+<p>可以在当前页面打开vim, 界面应该是这样的,(&lt;_&gt;表示光标的位置)</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">1   &lt;_&gt;</span><br><span class="line">~                                                                             </span><br><span class="line">~                                                                             </span><br><span class="line">~                                                                             </span><br><span class="line">~                                                                             </span><br><span class="line">~                              VIM - Vi IMproved                              </span><br><span class="line">~                                                                             </span><br><span class="line">~                                版本 8.1.1847                                </span><br><span class="line">~                           维护人 Bram Moolenaar 等                          </span><br><span class="line">~                      修改者 team+vim@tracker.debian.org                     </span><br><span class="line">~                       Vim 是可自由分发的开放源代码软件                      </span><br><span class="line">~                                                                             </span><br><span class="line">~                            帮助乌干达的可怜儿童！                           </span><br><span class="line">~                输入  :<span class="built_in">help</span> iccf&lt;Enter&gt;       查看说明                       </span><br><span class="line">~                                                                             </span><br><span class="line">~                输入  :q&lt;Enter&gt;               退出                           </span><br><span class="line">~                输入  :<span class="built_in">help</span>&lt;Enter&gt;  或  &lt;F1&gt;  查看在线帮助                   </span><br><span class="line">~                输入  :<span class="built_in">help</span> version8&lt;Enter&gt;   查看版本信息                   </span><br><span class="line">~                                                                             </span><br><span class="line">~                                                                             </span><br><span class="line">~                                                                             </span><br><span class="line">~                                                                             </span><br><span class="line">~                                                                             </span><br><span class="line">                                                              0,0-1        全部</span><br></pre></td></tr></table></figure></div>
+
+<p>你的界面可能是英文的,也没有左边的行号,不过这些不影响本篇文章的内容,以后都可以更改.</p>
+<p><code>~</code>表示占位符,即这个文件在这里没有内容.</p>
+<p>你可以根据上面提示查看自带的命令,按下 <code>Shift</code>和 <code>;</code>输入 <code>:</code>进入<em><strong>命令模式</strong></em>.</p>
+<p>此时你会看到你的光标到了左下角,也就是像这样</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">... ...</span><br><span class="line">~</span><br><span class="line">~</span><br><span class="line">~</span><br><span class="line">:&lt;_&gt;</span><br></pre></td></tr></table></figure></div>
+
+<p>因为vim中最后一行是不显示文件内容的,专门作为状态栏,显示当前模式,光标位置,文件权限等(可以通过插件配置).</p>
+<p>再输入 <code>help</code>就可以看到他的官方教程了</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">help.txt*      For Vim version 8.1.  Last change: 2019 Jul 21</span><br><span class="line"></span><br><span class="line">                        VIM - main <span class="built_in">help</span> file</span><br><span class="line">                                                                         k</span><br><span class="line">      Move around:  Use the cursor keys, or <span class="string">&quot;h&quot;</span> to go left,            h   l</span><br><span class="line">                    <span class="string">&quot;j&quot;</span> to go down, <span class="string">&quot;k&quot;</span> to go up, <span class="string">&quot;l&quot;</span> to go right.       j</span><br><span class="line">Close this window:  Use <span class="string">&quot;:q&lt;Enter&gt;&quot;</span>.</span><br><span class="line">   Get out of Vim:  Use <span class="string">&quot;:qa!&lt;Enter&gt;&quot;</span> (careful, all changes are lost!).</span><br><span class="line"></span><br><span class="line">Jump to a subject:  Position the cursor on a tag (e.g. |bars|) and hit CTRL-].</span><br><span class="line">   With the mouse:  <span class="string">&quot;:set mouse=a&quot;</span> to <span class="built_in">enable</span> the mouse (<span class="keyword">in</span> xterm or GUI).</span><br><span class="line">                    Double-click the left mouse button on a tag, e.g. |bars|.</span><br><span class="line">        Jump back:  Type CTRL-O.  Repeat to go further back.</span><br><span class="line"></span><br><span class="line">Get specific <span class="built_in">help</span>:  It is possible to go directly to whatever you want <span class="built_in">help</span></span><br><span class="line">                    on, by giving an argument to the |:<span class="built_in">help</span>| <span class="built_in">command</span>.</span><br><span class="line">                    Prepend something to specify the context:  *help-context*</span><br><span class="line"></span><br><span class="line">                          WHAT                  PREPEND    EXAMPLE      ~</span><br><span class="line">                      Normal mode <span class="built_in">command</span>                  :<span class="built_in">help</span> x</span><br><span class="line">help.txt [帮助][只读]                                         1,1           顶端</span><br><span class="line">1   hellovim</span><br><span class="line">[未命名] [+]                                                  1,4           全部</span><br><span class="line">记录中 @j</span><br></pre></td></tr></table></figure></div>
+
+<p>不过可能教程是英文,读起可能会有点障碍.</p>
+<p>不过最好记住右上角 <code>hjkl</code>这四个字母的位置,这是默认的移动光标的按键,形成图像记忆有助于快速上手.</p>
+<p>你可以先尝试在这个页面上用 <code>hjkl</code>移动光标浏览尝试下.</p>
+<p>选择哪个教程看是你的自由.</p>
+<p>如果你想退出,就像刚刚一样输入 <code>:q</code>,就可以返回到原本的文件编辑页面了.</p>
+<p>你可能注意到我们刚刚都输入了冒号 <code>:</code>.</p>
+<p>因为在<em><strong>普通模式</strong></em>(也就是一进入vim的默认模式)下,输入 <code>:</code>就会进入<em><strong>命令模式</strong></em>,可以在这个模式下输入各种指令</p>
+<p>这个我们之后再说吧</p>
+<p>现在我们在文件编辑页面:</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1  </span><br><span class="line">~                                                                             </span><br><span class="line">~                                                                             </span><br><span class="line">~                                                                             </span><br><span class="line">... ...</span><br></pre></td></tr></table></figure></div>
+
+<p>按下 <code>a</code>进入<em><strong>插入模式</strong></em>,现在就像windows下的记事本一样,可以自由输入文本,也可以用方向键移动光标</p>
+<p>左下角会提示当前模式</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">... ...</span><br><span class="line">~                                                                             </span><br><span class="line">~                                                                             </span><br><span class="line">~                                                                             </span><br><span class="line">-- 插入 --                                                    1,1          全部</span><br></pre></td></tr></table></figure></div>
+
+<p>输入 <code>Hello vim!</code>吧!😊</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1   Hello vim&lt;!_&gt;</span><br><span class="line">~                                                                             </span><br><span class="line">~                                                                             </span><br><span class="line">~                       </span><br><span class="line">... ...</span><br></pre></td></tr></table></figure></div>
+
+<p>这个时候按 <code>Esc</code>键就可以退出<em><strong>插入模式</strong></em>,回到<em><strong>普通模式</strong></em></p>
+<p>也可以看到左下角的 <code>-- 插入 --</code>字样没了</p>
+<p>这时候按 <code>Shift</code>和 <code>;</code>, 输入 <code>:</code>进入<em><strong>命令模式</strong></em>,按 <code>q</code>,即quit,表示退出vim</p>
+<p>突然发现左下角有这样的提示😧</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">... ...</span><br><span class="line">~                                                                             </span><br><span class="line">~                                                                             </span><br><span class="line">~                                                                             </span><br><span class="line">E37: 已修改但尚未保存 (可用 ! 强制执行)                       1,12         全部</span><br></pre></td></tr></table></figure></div>
+
+<p>这是因为vim作为一个软件是运行在内存中的,它所有的修改,在没写入硬盘前都保存在这个进程的缓冲区中.</p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/images/film/c200/id_1.jpg"
-                      alt="ID_1"
-                ><br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/film/c200/id_2.jpg"
-                      alt="ID_2"
-                ><br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/film/c200/id_3.jpg"
-                      alt="ID_3"
-                ><br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/film/c200/id_4.jpg"
-                      alt="ID_4"
-                ><br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/film/c200/id_5.jpg"
-                      alt="ID_5"
-                ><br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/film/c200/id_6.jpg"
-                      alt="ID_6"
-                ><br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/film/c200/id_7.jpg"
-                      alt="ID_7"
-                ><br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/film/c200/id_8.jpg"
-                      alt="ID_8"
-                ><br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/film/c200/id_9.jpg"
-                      alt="ID_9"
-                ><br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/film/c200/id_10.jpg"
-                      alt="ID_10"
-                ><br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/film/c200/id_11.jpg"
-                      alt="ID_11"
-                ><br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/film/c200/id_12.jpg"
-                      alt="ID_12"
-                ><br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/film/c200/id_13.jpg"
-                      alt="ID_13"
-                ><br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/film/c200/id_14.jpg"
-                      alt="ID_14"
+                     data-src="/%E6%9C%80%E8%AF%B4%E4%BA%BA%E8%AF%9D%E7%9A%84Vim%E7%BC%96%E8%BE%91%E5%99%A8%E5%85%A5%E9%97%A8%E5%8D%9A%E5%AE%A2-%E4%B8%80/vimprogress.png"
+                     
                 ></p>
+<p>作为终端的子进程,如果没有写入硬盘就退出,vim占用的缓冲区内存也会释放,相当于都白写了!😨</p>
+<p>不过你一定要不保存就退出的话也可以,就按照他的提示输入 <code>:q!</code>表示强制退出.</p>
+<p>这时候vim不会将你的缓冲区写到硬盘中,而是直接退出.</p>
+<p>要想正常地保存文件,先输入 <code>:w</code>,表示write,将缓冲区写到磁盘中.</p>
+<p>输入一个空格 ,再写上你想将这个文件改为什么名字</p>
+<p>整体上看就是这样 <code>:w hello.txt</code></p>
+<p>左下角会提示</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">... ...</span><br><span class="line">~</span><br><span class="line">~</span><br><span class="line">~</span><br><span class="line"><span class="string">&quot;hello.txt&quot;</span> [新] 1L, 13C 已写入                               1,12         全部</span><br></pre></td></tr></table></figure></div>
+
+<p>再输入 <code>:q</code>就可以正常退出啦.😋</p>
+<p>这时在终端中输入 <code>ls</code>就能看到我们刚刚创建的文件了</p>
+<p>看一看里面有什么</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wanger@wanger-16p:~$ <span class="built_in">cat</span> hello.txt </span><br><span class="line">hello vim!</span><br></pre></td></tr></table></figure></div>
+
+<p>再用vim打开它看一下:</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim hello.txt</span><br></pre></td></tr></table></figure></div>
+
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1   hello vim!</span><br><span class="line">~</span><br><span class="line">~</span><br><span class="line">~</span><br><span class="line">... ...</span><br></pre></td></tr></table></figure></div>
+
+<p>完全一致!</p>
+<p>接下来可以尝试用vim开始写代码了</p>
+<p>终端输入 <code>vim hellovim.c</code></p>
+<p>按 <code>a</code>进入<em><strong>插入模式</strong></em>,然后输入</p>
+<div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> <span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="number">2</span> <span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line"><span class="number">3</span>        <span class="built_in">printf</span>(<span class="string">&quot;hello vim!\n&quot;</span>);</span><br><span class="line"><span class="number">4</span> &#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>这里注意,vim默认一个 <code>tab</code>表示输入8个空格,这个以后可以改.</p>
+<p>如果需要移动光标的可以先展示用方向键代替,等学会用 <code>hjkl</code>后就会觉得,连方向键都是那么遥远,更别说鼠标了</p>
+<p>输入 <code>:wq</code>退出到终端</p>
+<p>输入 <code>gcc hellovim.c -o hello</code>编译生成可执行文件</p>
+<p>输入 <code>./hello</code>运行</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wanger@wanger-16p:~$ ./hello</span><br><span class="line">hello vim!</span><br></pre></td></tr></table></figure></div>
+
+<p>成功!😍</p>
+<hr>
+<p>OK这就是本篇文章的全部内容了,第一篇正经的技术博客,写完才感觉这么点东西为啥写这么多.</p>
+<p>如果觉得太啰嗦,你管我😝</p>
 
         </div>
 
@@ -705,18 +742,18 @@
             <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
                 <div class="article-copyright-info-container">
     <ul>
-        <li><strong>标题:</strong> 第一卷胶卷</li>
+        <li><strong>标题:</strong> 最说人话的Vim编辑器入门博客(一)</li>
         <li><strong>作者:</strong> wanger</li>
         <li><strong>创建于
-                :</strong> 2024-08-28 10:58:00</li>
+                :</strong> 2024-08-28 20:52:09</li>
         
             <li>
                 <strong>更新于
-                    :</strong> 2024-08-28 20:06:30
+                    :</strong> 2024-08-28 23:36:59
             </li>
         
         <li>
-            <strong>链接:</strong> https://10knamesmore.github.io/2024/08/28/第一卷胶卷/
+            <strong>链接:</strong> https://10knamesmore.github.io/2024/08/28/最说人话的Vim编辑器入门博客-一/
         </li>
         <li>
             <strong>
@@ -738,15 +775,7 @@
             <ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
                 
                     <li class="tag-item mx-0.5">
-                        <a href="/tags/%E6%91%84%E5%BD%B1/">#摄影</a>&nbsp;
-                    </li>
-                
-                    <li class="tag-item mx-0.5">
-                        <a href="/tags/%E8%83%B6%E7%89%87/">#胶片</a>&nbsp;
-                    </li>
-                
-                    <li class="tag-item mx-0.5">
-                        <a href="/tags/%E9%9A%8F%E6%83%B3/">#随想</a>&nbsp;
+                        <a href="/tags/vim/">#vim</a>&nbsp;
                     </li>
                 
             </ul>
@@ -757,21 +786,21 @@
         
             <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
                 
-                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-                        <a class="prev"
-                        rel="prev"
+                
+                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="next"
+                        rel="next"
                         href="/2024/08/28/TODO/"
                         >
-                            <span class="left arrow-icon flex justify-center items-center">
-                                <i class="fa-solid fa-chevron-left"></i>
-                            </span>
                             <span class="title flex justify-center items-center">
                                 <span class="post-nav-title-item">记录</span>
-                                <span class="post-nav-item">上一篇</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
                             </span>
                         </a>
                     </div>
-                
                 
             </div>
         
@@ -828,8 +857,8 @@
             <div class="post-toc-wrap">
     <div class="post-toc">
         <div class="toc-title">此页目录</div>
-        <div class="page-title">第一卷胶卷</div>
-        
+        <div class="page-title">最说人话的Vim编辑器入门博客(一)</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD"><span class="nav-text">下载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hello-vim"><span class="nav-text">Hello vim!</span></a></li></ol>
 
     </div>
 </div>
