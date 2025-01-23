@@ -13,21 +13,22 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="https://10knamesmore.github.io/2024/09/01/随想/"/>
+    <link rel="canonical" href="https://10knamesmore.github.io/2025/01/23/一个rust的多线程计算素数程序/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="想象一个几乎空白的领域,一群开拓者(或者说投机者)发现此地,利用这种信息差传入了些接受的理论,并以这种理论创造了属于自己的一套评价体系.原始积累的过程就不细说了.任何新来者想要了解这一领域,最方便的渠道就是接触到这内部环境中已经建立好的评价体系.所谓”庸俗”就类似一个多层过滤的体系中处于最上方,又面积最大的一层筛子.庸俗不单单是一个大而广的抽象概念,它也可以是一个个不同领域的具体的审美倾向,一系列">
+        <meta name="description" content="123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990use core::time;use std::&amp;#123">
 <meta property="og:type" content="article">
-<meta property="og:title" content="随想">
-<meta property="og:url" content="https://10knamesmore.github.io/2024/09/01/%E9%9A%8F%E6%83%B3/index.html">
+<meta property="og:title" content="一个rust的多线程计算素数程序">
+<meta property="og:url" content="https://10knamesmore.github.io/2025/01/23/%E4%B8%80%E4%B8%AArust%E7%9A%84%E5%A4%9A%E7%BA%BF%E7%A8%8B%E8%AE%A1%E7%AE%97%E7%B4%A0%E6%95%B0%E7%A8%8B%E5%BA%8F/index.html">
 <meta property="og:site_name" content="王二的博客">
-<meta property="og:description" content="想象一个几乎空白的领域,一群开拓者(或者说投机者)发现此地,利用这种信息差传入了些接受的理论,并以这种理论创造了属于自己的一套评价体系.原始积累的过程就不细说了.任何新来者想要了解这一领域,最方便的渠道就是接触到这内部环境中已经建立好的评价体系.所谓”庸俗”就类似一个多层过滤的体系中处于最上方,又面积最大的一层筛子.庸俗不单单是一个大而广的抽象概念,它也可以是一个个不同领域的具体的审美倾向,一系列">
+<meta property="og:description" content="123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990use core::time;use std::&amp;#123">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-09-01T13:54:44.000Z">
-<meta property="article:modified_time" content="2024-09-01T13:55:28.334Z">
+<meta property="article:published_time" content="2025-01-22T16:49:51.000Z">
+<meta property="article:modified_time" content="2025-01-22T16:51:00.397Z">
 <meta property="article:author" content="wanger">
+<meta property="article:tag" content="rust">
 <meta name="twitter:card" content="summary">
     
     
@@ -40,7 +41,7 @@
     
     <title>
         
-            随想 -
+            一个rust的多线程计算素数程序 -
         
         万余名的博客(alpha test)
     </title>
@@ -529,7 +530,7 @@
         <div class="article-title relative w-full">
             
                 <div class="w-full flex items-center pt-6 justify-start">
-                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">随想</h1>
+                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">一个rust的多线程计算素数程序</h1>
                 </div>
             
             </div>
@@ -550,20 +551,31 @@
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2024-09-01 21:54:44</span>
-        <span class="mobile">2024-09-01 21:54:44</span>
+        <span class="desktop">2025-01-23 00:49:51</span>
+        <span class="mobile">2025-01-23 00:49:51</span>
         <span class="hover-info">创建</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-09-01 21:55:28</span>
-            <span class="mobile">2024-09-01 21:55:28</span>
+            <span class="desktop">2025-01-23 00:51</span>
+            <span class="mobile">2025-01-23 00:51</span>
             <span class="hover-info">更新</span>
         </span>
     
 
     
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/rust/">rust</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
     
 
     
@@ -585,26 +597,25 @@
 
 
         <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-            <p>想象一个几乎空白的领域,一群开拓者(或者说投机者)发现此地,利用这种信息差传入了些接受的理论,并以这种理论创造了属于自己的一套评价体系.原始积累的过程就不细说了.任何新来者想要了解这一领域,最方便的渠道就是接触到这内部环境中已经建立好的评价体系.所谓”庸俗”就类似一个多层过滤的体系中处于最上方,又面积最大的一层筛子.庸俗不单单是一个大而广的抽象概念,它也可以是一个个不同领域的具体的审美倾向,一系列既得利益团体维护的井底.<br>庸俗不等于审美”低”,实际上审美也不该有高低这种说不清道不明的区别.与审美相关的仅有”争夺话语权”和”创造新的东西”这样无比具象真实的行为.庸俗会时常招人厌恶也就是在这两点上控制了审美的发展:1.庸俗拥有原始积累的广泛基础,若加上现在的互联网给草根和个体发声机会的增多,占据了主要的信息渠道.光从概率学上看,就拥有获得滚雪球般积累受众的优势.任何一种审美体系都能被xx利用,成为庸俗(音乐上的芭乐,电子舞曲,短视频审丑,摄影糖水)2.庸俗不需要创造新的东西,他只要不断的翻来覆去的制造(而非创造)不会出错的产品(而非作品),创办竞赛,展览,打印出版物,拍摄宣传.背后的出版商,器材制造商,第三方评价机构等等等等(或许在不同领域他们名字不同:唱片公司,互联网公司)各自心知肚明但互相包庇,各自从链条中抽水又维护这个链条.再时不时创造些无害化的甜点,将反叛符号化,模糊其背后严谨的批判而赋予一个辛辣,挑逗性的表皮.这个循环不会让这个体系本身有任何发展,还能让深陷其中的人自发为期庇护”这是人民的选择!”.庸俗是被人为创造出来的机器,机器中的人被物化为傀儡,自以为自由但只是被动的接受机器灌输给你的观念,并心甘情愿为其出卖自己的劳动,再被人批判为乌合之众.这不是人民的选择,是由投机者发起,由既得利益者和手下傀儡维护的灭除人性的资本机器.<br>有人会说庸俗之所以会广泛被人接受就是因为他的基础就是广大民众能接受的审美.我觉得这可以类似”实事造英雄”的理论解释.在前期几乎空白的情况下,任何只要不是太离谱的审美,在投机者的运转下都有机会发展起来,殖民出自己的一块区域.再往后又是一模一样了.<br>至于庸俗的更替,今天流行这,明天流行那,也不过是小众战胜大众,话语权更替,成为恶龙的不断循环了.</p>
-
+            <div class="highlight-container" data-rel="Rust"><figure class="iseeu highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> core::time;</span><br><span class="line"><span class="keyword">use</span> std::&#123;</span><br><span class="line">    sync::mpsc::&#123;<span class="keyword">self</span>&#125;,</span><br><span class="line">    thread::&#123;<span class="keyword">self</span>&#125;,</span><br><span class="line">    time::SystemTime,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">for</span> <span class="variable">i</span> <span class="keyword">in</span> <span class="number">1</span>..<span class="number">30</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> <span class="variable">before</span> = SystemTime::<span class="title function_ invoke__">now</span>();</span><br><span class="line">        <span class="keyword">let</span> <span class="variable">_</span> = <span class="title function_ invoke__">get_primes</span>(<span class="number">1</span>, <span class="number">1000000</span>, i);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">let</span> <span class="variable">after</span> = SystemTime::<span class="title function_ invoke__">now</span>();</span><br><span class="line">        <span class="keyword">let</span> <span class="variable">running_time</span> = after.<span class="title function_ invoke__">duration_since</span>(before).<span class="title function_ invoke__">unwrap</span>();</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;&#123;i&#125; 个线程用时 &#123;running_time:?&#125;&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">get_primes</span>(start: <span class="type">i32</span>, end: <span class="type">i32</span>, numbers_of_threads: <span class="type">i32</span>) <span class="punctuation">-&gt;</span> <span class="type">Vec</span>&lt;<span class="type">i32</span>&gt; &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">calculate_mission</span> = |start: &amp;<span class="type">i32</span>, end: &amp;<span class="type">i32</span>| <span class="punctuation">-&gt;</span> <span class="type">Vec</span>&lt;<span class="type">i32</span>&gt; &#123;</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">res</span>: <span class="type">Vec</span>&lt;<span class="type">i32</span>&gt; = <span class="built_in">vec!</span>[];</span><br><span class="line">        <span class="keyword">if</span> start == end &#123;</span><br><span class="line">            <span class="keyword">return</span> res;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> <span class="variable">num</span> <span class="keyword">in</span> *start..*end &#123;</span><br><span class="line">            <span class="keyword">if</span> <span class="title function_ invoke__">is_prime</span>(&amp;num) &#123;</span><br><span class="line">                res.<span class="title function_ invoke__">push</span>(num);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        res</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> (tx, rx) = mpsc::<span class="title function_ invoke__">channel</span>();</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">start_of_remain</span> = start;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">numbers_of_each_range</span> = (end - start) / numbers_of_threads + <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> <span class="variable">_</span> <span class="keyword">in</span> <span class="number">1</span>..numbers_of_threads &#123;</span><br><span class="line">        <span class="keyword">let</span> <span class="variable">tx</span> = tx.<span class="title function_ invoke__">clone</span>();</span><br><span class="line">        <span class="keyword">let</span> <span class="variable">range_start</span> = start_of_remain;</span><br><span class="line">        <span class="keyword">let</span> <span class="variable">range_end</span> = <span class="keyword">if</span> range_start + numbers_of_each_range &gt; end &#123;</span><br><span class="line">            end</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            start_of_remain + numbers_of_each_range</span><br><span class="line">        &#125;;</span><br><span class="line">        thread::<span class="title function_ invoke__">spawn</span>(<span class="keyword">move</span> || &#123;</span><br><span class="line">            <span class="keyword">let</span> <span class="variable">primes</span> = <span class="title function_ invoke__">calculate_mission</span>(&amp;range_start, &amp;range_end);</span><br><span class="line">            tx.<span class="title function_ invoke__">send</span>(primes).<span class="title function_ invoke__">unwrap</span>();</span><br><span class="line">        &#125;);</span><br><span class="line">        start_of_remain = range_end;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="title function_ invoke__">drop</span>(tx);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">all_primes</span> = <span class="built_in">vec!</span>[];</span><br><span class="line">    <span class="keyword">for</span> <span class="variable">primes</span> <span class="keyword">in</span> rx &#123;</span><br><span class="line">        all_primes.<span class="title function_ invoke__">extend</span>(primes);</span><br><span class="line">    &#125;</span><br><span class="line">    all_primes.<span class="title function_ invoke__">sort</span>();</span><br><span class="line">    all_primes</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">is_prime</span>(num: &amp;<span class="type">i32</span>) <span class="punctuation">-&gt;</span> <span class="type">bool</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> *num &lt;= <span class="number">1</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> *num == <span class="number">2</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>; <span class="comment">// 2 是素数</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> *num % <span class="number">2</span> == <span class="number">0</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>; <span class="comment">// 排除其他偶数</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">limit</span> = (*num <span class="keyword">as</span> <span class="type">f64</span>).<span class="title function_ invoke__">sqrt</span>() <span class="keyword">as</span> <span class="type">i32</span>; <span class="comment">// 计算平方根</span></span><br><span class="line">    <span class="keyword">for</span> <span class="variable">i</span> <span class="keyword">in</span> (<span class="number">3</span>..=limit).<span class="title function_ invoke__">step_by</span>(<span class="number">2</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> *num % i == <span class="number">0</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="literal">true</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[test]</span></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">test</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">result</span> = <span class="title function_ invoke__">get_primes</span>(<span class="number">10</span>, <span class="number">100</span>, <span class="number">10</span>);</span><br><span class="line">    <span class="comment">// 10 到 100 的所有素数</span></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">expected</span> = <span class="built_in">vec!</span>[</span><br><span class="line">        <span class="number">11</span>, <span class="number">13</span>, <span class="number">17</span>, <span class="number">19</span>, <span class="number">23</span>, <span class="number">29</span>, <span class="number">31</span>, <span class="number">37</span>, <span class="number">41</span>, <span class="number">43</span>, <span class="number">47</span>, <span class="number">53</span>, <span class="number">59</span>, <span class="number">61</span>, <span class="number">67</span>, <span class="number">71</span>, <span class="number">73</span>, <span class="number">79</span>, <span class="number">83</span>, <span class="number">89</span>, <span class="number">97</span>,</span><br><span class="line">    ];</span><br><span class="line">    <span class="built_in">assert_eq!</span>(result, expected);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
         </div>
 
         
             <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
                 <div class="article-copyright-info-container">
     <ul>
-        <li><strong>标题:</strong> 随想</li>
+        <li><strong>标题:</strong> 一个rust的多线程计算素数程序</li>
         <li><strong>作者:</strong> wanger</li>
         <li><strong>创建于
-                :</strong> 2024-09-01 21:54:44</li>
+                :</strong> 2025-01-23 00:49:51</li>
         
             <li>
                 <strong>更新于
-                    :</strong> 2024-09-01 21:55:28
+                    :</strong> 2025-01-23 00:51:00
             </li>
         
         <li>
-            <strong>链接:</strong> https://10knamesmore.github.io/2024/09/01/随想/
+            <strong>链接:</strong> https://10knamesmore.github.io/2025/01/23/一个rust的多线程计算素数程序/
         </li>
         <li>
             <strong>
@@ -623,35 +634,28 @@
         
 
         
+            <ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/rust/">#rust</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
 
         
 
         
             <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
                 
-                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-                        <a class="prev"
-                        rel="prev"
-                        href="/2024/09/24/%E7%90%86%E6%83%B3%E5%9B%BD%E7%AC%94%E8%AE%B0-%E4%B8%80-%E4%B9%A0%E4%BF%97%E6%AD%A3%E4%B9%89%E8%A7%82/"
-                        >
-                            <span class="left arrow-icon flex justify-center items-center">
-                                <i class="fa-solid fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex justify-center items-center">
-                                <span class="post-nav-title-item">理想国笔记(一) 习俗正义观</span>
-                                <span class="post-nav-item">上一篇</span>
-                            </span>
-                        </a>
-                    </div>
-                
                 
                     <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
                         <a class="next"
                         rel="next"
-                        href="/2024/08/28/%E6%9C%80%E8%AF%B4%E4%BA%BA%E8%AF%9D%E7%9A%84Vim%E7%BC%96%E8%BE%91%E5%99%A8%E5%85%A5%E9%97%A8%E5%8D%9A%E5%AE%A2-%E4%B8%80/"
+                        href="/2025/01/04/2025%E5%90%AC%E6%AD%8C%E7%BA%AA%E5%BD%95/"
                         >
                             <span class="title flex justify-center items-center">
-                                <span class="post-nav-title-item">最说人话的Vim编辑器入门博客(一)</span>
+                                <span class="post-nav-title-item">2025听歌纪录</span>
                                 <span class="post-nav-item">下一篇</span>
                             </span>
                             <span class="right arrow-icon flex justify-center items-center">
@@ -715,7 +719,7 @@
             <div class="post-toc-wrap">
     <div class="post-toc">
         <div class="toc-title">此页目录</div>
-        <div class="page-title">随想</div>
+        <div class="page-title">一个rust的多线程计算素数程序</div>
         
 
     </div>
