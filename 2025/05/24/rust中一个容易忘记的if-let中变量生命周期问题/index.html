@@ -13,7 +13,7 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="https://10knamesmore.github.io/2025/05/23/协变和逆变浅析浅析/"/>
+    <link rel="canonical" href="https://10knamesmore.github.io/2025/05/24/rust中一个容易忘记的if-let中变量生命周期问题/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
@@ -21,23 +21,16 @@
     
     
         
-        <meta name="description" content="什么是变性（Variance）？变性是描述类型构造器 F&lt;T&gt; 如何随着 T 的子 类型关系变化而变化的一种性质。 设 T1 &lt;: T2（即 T1 是 T2 的子类型），我们关心：  那么 F&lt;T1&gt; 和 F&lt;T2&gt; 之间是否也存在子类型关系？  这就是变性问题的本质。 比如,对于没有构造器的raw class 123456789class Animal">
+        <meta name="description" content="引言最近在使用rust编写代码时遇到了一个一开始没想明白的生命周期错误,大致如下: 1234567891011121314fn get_playlist_cover(&amp; mut self, id: u64) -&gt; Option&lt;&amp; StatefulProtocol&gt; &#123;        if let Some(image) &#x3D; self.playlist_">
 <meta property="og:type" content="article">
-<meta property="og:title" content="协变和逆变浅析浅析">
-<meta property="og:url" content="https://10knamesmore.github.io/2025/05/23/%E5%8D%8F%E5%8F%98%E5%92%8C%E9%80%86%E5%8F%98%E6%B5%85%E6%9E%90%E6%B5%85%E6%9E%90/index.html">
+<meta property="og:title" content="rust中一个容易忘记的if_let中变量生命周期问题">
+<meta property="og:url" content="https://10knamesmore.github.io/2025/05/24/rust%E4%B8%AD%E4%B8%80%E4%B8%AA%E5%AE%B9%E6%98%93%E5%BF%98%E8%AE%B0%E7%9A%84if-let%E4%B8%AD%E5%8F%98%E9%87%8F%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E9%97%AE%E9%A2%98/index.html">
 <meta property="og:site_name" content="王二的博客">
-<meta property="og:description" content="什么是变性（Variance）？变性是描述类型构造器 F&lt;T&gt; 如何随着 T 的子 类型关系变化而变化的一种性质。 设 T1 &lt;: T2（即 T1 是 T2 的子类型），我们关心：  那么 F&lt;T1&gt; 和 F&lt;T2&gt; 之间是否也存在子类型关系？  这就是变性问题的本质。 比如,对于没有构造器的raw class 123456789class Animal">
+<meta property="og:description" content="引言最近在使用rust编写代码时遇到了一个一开始没想明白的生命周期错误,大致如下: 1234567891011121314fn get_playlist_cover(&amp; mut self, id: u64) -&gt; Option&lt;&amp; StatefulProtocol&gt; &#123;        if let Some(image) &#x3D; self.playlist_">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-05-23T07:23:51.000Z">
-<meta property="article:modified_time" content="2025-05-23T07:52:45.635Z">
+<meta property="article:published_time" content="2025-05-24T08:39:10.000Z">
+<meta property="article:modified_time" content="2025-05-24T08:51:38.089Z">
 <meta property="article:author" content="wanger">
-<meta property="article:tag" content="泛型">
-<meta property="article:tag" content="类型系统">
-<meta property="article:tag" content="变性">
-<meta property="article:tag" content="协变">
-<meta property="article:tag" content="逆变">
-<meta property="article:tag" content="Rust">
-<meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary">
     
     
@@ -50,7 +43,7 @@
     
     <title>
         
-            协变和逆变浅析浅析 | 万余名的博客(alpha test)
+            rust中一个容易忘记的if_let中变量生命周期问题 | 万余名的博客(alpha test)
         
     </title>
 
@@ -533,7 +526,7 @@
 		<div class="article-title relative w-full">
 			
 			<div class="w-full flex items-center pt-6 justify-start">
-				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">协变和逆变浅析浅析</h1>
+				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">rust中一个容易忘记的if_let中变量生命周期问题</h1>
 			</div>
 			
 		</div>
@@ -554,55 +547,20 @@
 					<div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2025-05-23 15:23:51</span>
-        <span class="mobile">2025-05-23 15:23:51</span>
+        <span class="desktop">2025-05-24 16:39:10</span>
+        <span class="mobile">2025-05-24 16:39:10</span>
         <span class="hover-info">创建</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2025-05-23 15:52:45</span>
-            <span class="mobile">2025-05-23 15:52:45</span>
+            <span class="desktop">2025-05-24 16:51:38</span>
+            <span class="mobile">2025-05-24 16:51:38</span>
             <span class="hover-info">更新</span>
         </span>
     
 
     
-    
-        <span class="article-tags article-meta-item">
-            <i class="fa-regular fa-tags"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/tags/%E6%B3%9B%E5%9E%8B/">泛型</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/%E7%B1%BB%E5%9E%8B%E7%B3%BB%E7%BB%9F/">类型系统</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/%E5%8F%98%E6%80%A7/">变性</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/%E5%8D%8F%E5%8F%98/">协变</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/%E9%80%86%E5%8F%98/">逆变</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/Rust/">Rust</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/Java/">Java</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
     
 
     
@@ -624,63 +582,69 @@
 
 
 		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-			<h2 id="什么是变性（Variance）？"><a href="#什么是变性（Variance）？" class="headerlink" title="什么是变性（Variance）？"></a>什么是变性（Variance）？</h2><p>变性是描述<strong>类型构造器 <code>F&lt;T&gt;</code> 如何随着 <code>T</code> 的子 类型关系变化</strong>而变化的一种性质。</p>
-<p>设 <code>T1 &lt;: T2</code>（即 <code>T1</code> 是 <code>T2</code> 的子类型），我们关心：</p>
-<blockquote>
-<p>那么 <code>F&lt;T1&gt;</code> 和 <code>F&lt;T2&gt;</code> 之间是否也存在子类型关系？</p>
-</blockquote>
-<p>这就是变性问题的本质。</p>
-<p>比如,对于没有构造器的raw class</p>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">class Animal &#123;&#125;</span><br><span class="line">class Cat &#123;&#125;</span><br><span class="line"></span><br><span class="line">animal = new Animal()</span><br><span class="line">cat = new Cat()</span><br><span class="line"></span><br><span class="line">fn f1(arg : Animal)</span><br><span class="line"></span><br><span class="line">f1(cat)</span><br></pre></td></tr></table></figure></div>
+			<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>最近在使用rust编写代码时遇到了一个一开始没想明白的生命周期错误,大致如下:</p>
+<div class="code-container" data-rel="Rust"><figure class="iseeu highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">get_playlist_cover</span>(&amp; <span class="keyword">mut</span> <span class="keyword">self</span>, id: <span class="type">u64</span>) <span class="punctuation">-&gt;</span> <span class="type">Option</span>&lt;&amp; StatefulProtocol&gt; &#123;</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">let</span> <span class="variable">Some</span>(image) = <span class="keyword">self</span>.playlist_cover.<span class="title function_ invoke__">get</span>(&amp;id) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="title function_ invoke__">Some</span>(image);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">let</span> <span class="variable">image_type</span> = ImageCacheType::PlaylistCover;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">let</span> <span class="variable">Some</span>(image) = <span class="keyword">self</span>.<span class="title function_ invoke__">try_load_image_from_disk</span>(image_type, id) &#123;</span><br><span class="line">            <span class="keyword">self</span>.playlist_cover.<span class="title function_ invoke__">insert</span>(id, image);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">self</span>.playlist_cover.<span class="title function_ invoke__">get</span>(&amp;id);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="literal">None</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></div>
 
-<p>这里我们可以很自然的传入一个 Cat 类型, 因为 <code>里氏替换原则</code> 的存在</p>
-<blockquote>
-<p>若 S 是 T 的子类型，则程序中任何使用 T 的地方都可以使用 S 来替代，而不会影响程序的正确性。(子类实现父类的所有方法签名等)</p>
-</blockquote>
-<p>因为没有 <code>类型构造器 F&lt;&gt; </code> 所以不讨论变性的问题</p>
-<p>也可以尝试理解为(不严谨的)  对dddd于构造器 <code>F&lt;T&gt; = T</code>, <code>F&lt;T&gt;</code> 的继承关系和 <code>T</code> 相同(<code>T</code> 和 <code>T</code> 相同,也就是 <code>协变</code> 的)</p>
-<p>这里的构造器 <code>F&lt;T&gt;</code> 就是指各种语言中的含有泛型的类型,比如java的 <code>ArrayList&lt;Integer&gt;</code>, rust 的 <code>Box&lt;dyn AnimalTrait&gt;</code></p>
-<p>假设 <code>ArrayList&lt;T&gt;</code>是 <code>协变</code> 的,那么因为Cat是Animal子类, 所以 <code>ArrayList&lt;Cat&gt;</code> 是 <code>ArrayList&lt;Animal&gt;</code>的子类</p>
-<p>假设 <code>ArrayList&lt;T&gt;</code>是 <code>逆变</code> 的,那么相反</p>
-<p>那么,如果是 <code>不变</code> , 就说明上文两者没有继承关系</p>
-<h2 id="三种变性类型"><a href="#三种变性类型" class="headerlink" title="三种变性类型"></a>三种变性类型</h2><table>
-<thead>
-<tr>
-<th>类型构造器的行为</th>
-<th>称为</th>
-<th>数学形式</th>
-<th>例子</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>T1 &lt;: T2</code> 推出 <code>F&lt;T1&gt; &lt;: F&lt;T2&gt;</code></td>
-<td>协变（Covariant）</td>
-<td>子类型关系保留</td>
-<td><code>&amp;T</code>、<code>Option&lt;T&gt;</code> 在 Rust 中是协变</td>
-</tr>
-<tr>
-<td><code>T1 &lt;: T2</code> 推出 <code>F&lt;T2&gt; &lt;: F&lt;T1&gt;</code></td>
-<td>逆变（Contravariant）</td>
-<td>子类型关系反转</td>
-<td>函数参数类型是逆变的</td>
-</tr>
-<tr>
-<td>无法推出任何子类型关系</td>
-<td>不变（Invariant）</td>
-<td>没有子类型传导</td>
-<td><code>Cell&lt;T&gt;</code>、Java 的 <code>List&lt;T&gt;</code></td>
-</tr>
-</tbody></table>
-<h2 id="举个例子：Rust-中的协变引用"><a href="#举个例子：Rust-中的协变引用" class="headerlink" title="举个例子：Rust 中的协变引用"></a>举个例子：Rust 中的协变引用</h2><pre><code class="rust">struct Animal;
-struct Cat;
+<p>错误是</p>
+<div class="code-container" data-rel="Rust"><figure class="iseeu highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">error[E0502]: cannot borrow *<span class="keyword">self</span> <span class="keyword">as</span> mutable because it is also borrowed <span class="keyword">as</span> immutable</span><br><span class="line">   -<span class="punctuation">-&gt;</span> src/app.rs:<span class="number">115</span>:<span class="number">23</span></span><br><span class="line">    |</span><br><span class="line"><span class="number">108</span> |     <span class="title function_ invoke__">pub</span>(<span class="keyword">crate</span>) <span class="keyword">fn</span> <span class="title function_">get_playlist_cover</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>, id: <span class="type">u64</span>) <span class="punctuation">-&gt;</span> <span class="type">Option</span>&lt;&amp;StatefulProtocol&gt; &#123;</span><br><span class="line">    |                                      - <span class="keyword">let</span><span class="symbol">&#x27;s</span> call the lifetime of this reference &#x27;<span class="number">1</span></span><br><span class="line"><span class="number">109</span> |         <span class="keyword">let</span> <span class="variable">existing_cache</span> = <span class="keyword">self</span>.playlist_cover.<span class="title function_ invoke__">get</span>(&amp;id);</span><br><span class="line">    |                              ------------------- immutable borrow occurs here</span><br><span class="line">...</span><br><span class="line"><span class="number">112</span> |             <span class="title function_ invoke__">Some</span>(image) =&gt; <span class="title function_ invoke__">Some</span>(image),</span><br><span class="line">    |                            ----------- returning this value requires that <span class="keyword">self</span>.playlist_cover is borrowed <span class="keyword">for</span> &#x27;<span class="number">1</span></span><br><span class="line">...</span><br><span class="line"><span class="number">115</span> |                 <span class="keyword">match</span> <span class="keyword">self</span>.<span class="title function_ invoke__">try_load_image_from_disk</span>(image_type, id) &#123;</span><br><span class="line">    |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ mutable borrow occurs here</span><br></pre></td></tr></table></figure></div>
+<p>问GPT,回答是在第一行借用self.playlist_cover.get(&amp;id) 的时候将 <code>borrow</code> <code>immutable</code>,并且<strong>生命周期持续到了函数结束</strong></p>
+<p>我想的是if let语句都结束了,内部都返回了,为什么这个借用的生命周期还会持续呢?</p>
+<p>查询一些资料后才发现, 其实还是rust基础有忘记的地方…</p>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><div class="code-container" data-rel="Rust"><figure class="iseeu highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#[derive(Debug)]</span></span><br><span class="line"><span class="keyword">enum</span> <span class="title class_">Pick</span> &#123;</span><br><span class="line">    A,</span><br><span class="line">    B,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">if_let</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">expr</span> = Pick::A;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">temp</span> = &amp;<span class="keyword">mut</span> expr;</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">let</span> <span class="variable">pat</span> = temp &#123;</span><br><span class="line">        *pat = Pick::B;</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;&#123;:?&#125;&quot;</span>, pat);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 此处借用 expr 的不可变引用</span></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">d</span> = &amp;expr; <span class="comment">// ❌ 错误：无法在存在可变借用的情况下再借用不可变引用</span></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;:&#125;&quot;</span>, d);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">_match</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">expr</span> = Pick::A;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">temp</span> = &amp;<span class="keyword">mut</span> expr;</span><br><span class="line">    <span class="keyword">match</span> temp &#123;</span><br><span class="line">        pat =&gt; &#123;</span><br><span class="line">            *pat = Pick::B;</span><br><span class="line">            <span class="built_in">println!</span>(<span class="string">&quot;&#123;:?&#125;&quot;</span>, pat);</span><br><span class="line">        &#125;</span><br><span class="line">        _ =&gt; &#123;</span><br><span class="line">            <span class="comment">// other code</span></span><br><span class="line">            <span class="keyword">let</span> <span class="variable">d</span> = &amp;expr; <span class="comment">// ❌ 同样错误</span></span><br><span class="line">            <span class="built_in">println!</span>(<span class="string">&quot;&#123;:&#125;&quot;</span>, d);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 
-fn accept(a: &amp;Animal) &#123;&#125;
 
-fn main() &#123;
-    let c: &amp;Cat = ...;
-    accept(c); // ✅ 合法，因为 `&amp;T` 是协变的
-&#125;
-</code></pre>
+<h2 id="错误解释"><a href="#错误解释" class="headerlink" title="错误解释"></a>错误解释</h2><p>在以上两个函数中，Rust 编译器报错信息大致如下：</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">error[E0502]: cannot borrow `expr` as immutable because it is also borrowed as mutable</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h3><p>这两个函数可以大致看为在生命周期上等价</p>
+<p>Rust 的借用规则规定：</p>
+<ul>
+<li>在作用域中同一时间<strong>只能存在一个可变引用</strong>，或任意多个不可变引用；</li>
+<li>可变引用的生命周期必须完整地退出，之后才能出现新的引用（无论可变还是不可变）；</li>
+</ul>
+<p>在本例中，<code>temp = &amp;mut expr</code> 为 <code>expr</code> 创建了一个可变引用。此引用的生命周期在 <code>if let</code> 或 <code>match</code> 的整个匹配体中都被认为是有效的，即直到其作用域结束。</p>
+<p>即便代码逻辑上你已经不再使用 <code>temp</code>，Rust 的借用检查器无法判断这一点，它只看作用域是否已退出，因此当你再尝试 <code>let d = &amp;expr</code> 时，违反了借用规则。</p>
+<h2 id="if-let-与-match"><a href="#if-let-与-match" class="headerlink" title="if let 与 match"></a>if let 与 match</h2><h3 id="if-let"><a href="#if-let" class="headerlink" title="if let"></a><code>if let</code></h3><p>在 <code>if let pat = expr &#123; ... &#125;</code> 中，整个 <code>if let</code> 表达式会创建一个作用域块。</p>
+<div class="code-container" data-rel="Rust"><figure class="iseeu highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> <span class="variable">pat</span> = expr &#123;</span><br><span class="line">    <span class="comment">// 这个块内 pat 有效</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 这个块外 pat 不存在，但 borrow checker 仍认为 temp 的借用持续到了这里</span></span><br></pre></td></tr></table></figure></div>
+
+<p>由于 <code>if let</code> 没有分支匹配失败处理，所以匹配表达式本身的生命周期（包括其可变引用）会延伸到整个 <code>if let</code> 结束为止。</p>
+<hr>
+<h3 id="match"><a href="#match" class="headerlink" title="match"></a><code>match</code></h3><p>虽然语义更完整，<code>match</code> 也一样遵循作用域原则。以下代码：</p>
+<div class="code-container" data-rel="Rust"><figure class="iseeu highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">match</span> temp &#123;</span><br><span class="line">    pat =&gt; &#123;</span><br><span class="line">        *pat = Pick::B;</span><br><span class="line">    &#125;</span><br><span class="line">    _ =&gt; &#123;</span><br><span class="line">        <span class="keyword">let</span> <span class="variable">d</span> = &amp;expr;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>Rust 认为 <code>temp</code> 的借用在整个 <code>match</code> 表达式期间都处于活动状态，直到整个 <code>match</code> 块结束。</p>
+<hr>
+<h2 id="关键知识点总结"><a href="#关键知识点总结" class="headerlink" title="关键知识点总结"></a>关键知识点总结</h2><ol>
+<li><p><strong>借用规则</strong>：</p>
+<ul>
+<li>同时只能有一个可变借用，或多个不可变借用。</li>
+<li>可变借用必须在作用域结束后才可进行不可变借用。</li>
+</ul>
+</li>
+<li><p><strong>作用域分析</strong>：</p>
+<ul>
+<li><code>if let</code> 和 <code>match</code> 都会创建块作用域。</li>
+<li>绑定（如 <code>pat</code>）的生命周期由匹配表达式决定，而非代码逻辑上看起来的使用范围。</li>
+</ul>
+</li>
+<li><p><strong>编译器行为</strong>：</p>
+<ul>
+<li>Rust 编译器的借用检查器是保守的，通常不会分析变量是否仍被实际使用，而是依据作用域边界判断借用是否仍有效。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="推荐做法"><a href="#推荐做法" class="headerlink" title="推荐做法"></a>推荐做法</h2><ul>
+<li>如果需要在匹配后继续使用原始变量，<strong>手动控制作用域</strong>：</li>
+</ul>
+<div class="code-container" data-rel="Rust"><figure class="iseeu highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="variable">expr</span> = Pick::A;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">temp</span> = &amp;<span class="keyword">mut</span> expr;</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">let</span> <span class="variable">pat</span> = temp &#123;</span><br><span class="line">        *pat = Pick::B;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// temp 的借用已经结束</span></span><br><span class="line"><span class="keyword">let</span> <span class="variable">d</span> = &amp;expr;</span><br></pre></td></tr></table></figure></div>
+
+<ul>
+<li>避免将可变借用延伸到函数较长生命周期中，<strong>尽量缩小作用域</strong>。</li>
+</ul>
+<h2 id="上文代码解决方案"><a href="#上文代码解决方案" class="headerlink" title="上文代码解决方案"></a>上文代码解决方案</h2><div class="code-container" data-rel="Rust"><figure class="iseeu highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">get_playlist_cover</span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>, id: <span class="type">u64</span>) <span class="punctuation">-&gt;</span> <span class="type">Option</span>&lt;&amp;<span class="keyword">mut</span> StatefulProtocol&gt; &#123;</span><br><span class="line">    <span class="comment">// 尝试获取缓存（短生命周期）</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">self</span>.playlist_cover.<span class="title function_ invoke__">contains_key</span>(&amp;id) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">self</span>.playlist_cover.<span class="title function_ invoke__">get_mut</span>(&amp;id);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">image_type</span> = ImageCacheType::PlaylistCover;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">self</span>.<span class="title function_ invoke__">try_load_image_from_disk</span>(image_type, id)</span><br><span class="line">        .<span class="title function_ invoke__">map</span>(|image| <span class="keyword">self</span>.playlist_cover.<span class="title function_ invoke__">entry</span>(id).<span class="title function_ invoke__">or_insert</span>(image))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>因为我要做的只是在函数一开始检查缓存中是否存在这个键而已, 在检查的阶段根本不需要对<code>self</code>借用, 只需要得到一个bool而已.</p>
 
 		</div>
 
@@ -688,18 +652,18 @@ fn main() &#123;
 		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
 			<div class="article-copyright-info-container">
     <ul>
-        <li><strong>标题:</strong> 协变和逆变浅析浅析</li>
+        <li><strong>标题:</strong> rust中一个容易忘记的if_let中变量生命周期问题</li>
         <li><strong>作者:</strong> wanger</li>
         <li><strong>创建于
-                :</strong> 2025-05-23 15:23:51</li>
+                :</strong> 2025-05-24 16:39:10</li>
         
             <li>
                 <strong>更新于
-                    :</strong> 2025-05-23 15:52:45
+                    :</strong> 2025-05-24 16:51:38
             </li>
         
         <li>
-            <strong>链接:</strong> https://10knamesmore.github.io/2025/05/23/协变和逆变浅析浅析/
+            <strong>链接:</strong> https://10knamesmore.github.io/2025/05/24/rust中一个容易忘记的if-let中变量生命周期问题/
         </li>
         <li>
             <strong>
@@ -718,61 +682,17 @@ fn main() &#123;
 		
 
 		
-		<ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
-			
-			<li class="tag-item mx-0.5">
-				<a href="/tags/%E6%B3%9B%E5%9E%8B/">#泛型</a>&nbsp;
-			</li>
-			
-			<li class="tag-item mx-0.5">
-				<a href="/tags/%E7%B1%BB%E5%9E%8B%E7%B3%BB%E7%BB%9F/">#类型系统</a>&nbsp;
-			</li>
-			
-			<li class="tag-item mx-0.5">
-				<a href="/tags/%E5%8F%98%E6%80%A7/">#变性</a>&nbsp;
-			</li>
-			
-			<li class="tag-item mx-0.5">
-				<a href="/tags/%E5%8D%8F%E5%8F%98/">#协变</a>&nbsp;
-			</li>
-			
-			<li class="tag-item mx-0.5">
-				<a href="/tags/%E9%80%86%E5%8F%98/">#逆变</a>&nbsp;
-			</li>
-			
-			<li class="tag-item mx-0.5">
-				<a href="/tags/Rust/">#Rust</a>&nbsp;
-			</li>
-			
-			<li class="tag-item mx-0.5">
-				<a href="/tags/Java/">#Java</a>&nbsp;
-			</li>
-			
-		</ul>
-		
 
 		
 
 		
 		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
 			
-			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-				<a class="prev" rel="prev" href="/2025/05/24/rust%E4%B8%AD%E4%B8%80%E4%B8%AA%E5%AE%B9%E6%98%93%E5%BF%98%E8%AE%B0%E7%9A%84if-let%E4%B8%AD%E5%8F%98%E9%87%8F%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E9%97%AE%E9%A2%98/">
-					<span class="left arrow-icon flex justify-center items-center">
-						<i class="fa-solid fa-chevron-left"></i>
-					</span>
-					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item">rust中一个容易忘记的if_let中变量生命周期问题</span>
-						<span class="post-nav-item">上一篇</span>
-					</span>
-				</a>
-			</div>
-			
 			
 			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-				<a class="next" rel="next" href="/2025/02/15/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8base64%E7%BC%96%E7%A0%81/">
+				<a class="next" rel="next" href="/2025/05/23/%E5%8D%8F%E5%8F%98%E5%92%8C%E9%80%86%E5%8F%98%E6%B5%85%E6%9E%90%E6%B5%85%E6%9E%90/">
 					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item">为什么要使用base64编码</span>
+						<span class="post-nav-title-item">协变和逆变浅析浅析</span>
 						<span class="post-nav-item">下一篇</span>
 					</span>
 					<span class="right arrow-icon flex justify-center items-center">
@@ -836,8 +756,8 @@ fn main() &#123;
 		<div class="post-toc-wrap">
 	<div class="post-toc">
 		<div class="toc-title">目录</div>
-		<div class="page-title">协变和逆变浅析浅析</div>
-		<ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%8F%98%E6%80%A7%EF%BC%88Variance%EF%BC%89%EF%BC%9F"><span class="nav-text">什么是变性（Variance）？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E7%A7%8D%E5%8F%98%E6%80%A7%E7%B1%BB%E5%9E%8B"><span class="nav-text">三种变性类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BE%E4%B8%AA%E4%BE%8B%E5%AD%90%EF%BC%9ARust-%E4%B8%AD%E7%9A%84%E5%8D%8F%E5%8F%98%E5%BC%95%E7%94%A8"><span class="nav-text">举个例子：Rust 中的协变引用</span></a></li></ol>
+		<div class="page-title">rust中一个容易忘记的if_let中变量生命周期问题</div>
+		<ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E8%A8%80"><span class="nav-text">引言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B"><span class="nav-text">示例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%94%99%E8%AF%AF%E8%A7%A3%E9%87%8A"><span class="nav-text">错误解释</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%9F%E5%9B%A0"><span class="nav-text">原因</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#if-let-%E4%B8%8E-match"><span class="nav-text">if let 与 match</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#if-let"><span class="nav-text">if let</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#match"><span class="nav-text">match</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E9%94%AE%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93"><span class="nav-text">关键知识点总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A8%E8%8D%90%E5%81%9A%E6%B3%95"><span class="nav-text">推荐做法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8A%E6%96%87%E4%BB%A3%E7%A0%81%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-text">上文代码解决方案</span></a></li></ol>
 
 	</div>
 </div>
