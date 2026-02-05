@@ -6,6 +6,19 @@ import Tags from './pages/Tags';
 import Archives from './pages/Archives';
 import './App.css';
 
+/**
+ * 应用根组件
+ * 
+ * @returns React 组件
+ * 
+ * @remarks
+ * 配置应用路由和整体布局。路由结构：
+ * - `/` - 首页（文章列表）
+ * - `/post/:slug` - 文章详情页
+ * - `/tags` - 标签页
+ * - `/archives` - 归档页
+ * - `*` - 404 页面
+ */
 function App() {
   return (
     <BrowserRouter>

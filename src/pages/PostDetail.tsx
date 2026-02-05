@@ -4,6 +4,19 @@ import type { Post } from '../types';
 import MarkdownRenderer from '../components/common/MarkdownRenderer';
 import './PostDetail.css';
 
+/**
+ * 文章详情页组件
+ * 
+ * @returns React 组件
+ * 
+ * @remarks
+ * 展示单篇文章的完整内容。主要功能：
+ * - 根据 URL 参数中的 slug 加载对应文章
+ * - 显示文章标题、日期、分类、标签
+ * - 使用 MarkdownRenderer 渲染文章内容
+ * - 文章不存在时自动跳转到首页
+ * - 提供返回按钮
+ */
 const PostDetail = () => {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
@@ -11,6 +24,9 @@ const PostDetail = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    /**
+     * 加载文章详情数据
+     */
     const loadPost = async () => {
       try {
         const response = await fetch(`/data/posts/${slug}.json`);
@@ -32,6 +48,12 @@ const PostDetail = () => {
     }
   }, [slug, navigate]);
 
+  /**
+   * 格式化日期为中文显示
+   * 
+   * @param dateString - ISO 8601 格式的日期字符串
+   * @returns 格式化后的中文日期字符串
+   */
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     return date.toLocaleDateString('zh-CN', {
@@ -71,7 +93,7 @@ const PostDetail = () => {
           </div>
         )}
       </header>
-      
+
       <div className="post-content">
         <MarkdownRenderer content={post.content} />
       </div>

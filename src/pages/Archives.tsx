@@ -3,16 +3,36 @@ import { Link } from 'react-router-dom';
 import type { PostMeta } from '../types';
 import './Archives.css';
 
+/**
+ * 年份分组接口
+ */
 interface YearGroup {
+  /** 年份 */
   year: string;
+  /** 该年份的文章列表 */
   posts: PostMeta[];
 }
 
+/**
+ * 归档页组件
+ * 
+ * @returns React 组件
+ * 
+ * @remarks
+ * 按年份时间线展示所有文章。主要功能：
+ * - 按发布年份倒序分组展示文章
+ * - 每篇文章显示月日和标题
+ * - 点击标题跳转到文章详情
+ * - 显示文章总数统计
+ */
 const Archives = () => {
   const [posts, setPosts] = useState<PostMeta[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    /**
+     * 加载文章索引数据
+     */
     const loadPosts = async () => {
       try {
         const response = await fetch('/data/posts-index.json');
@@ -28,6 +48,11 @@ const Archives = () => {
     loadPosts();
   }, []);
 
+  /**
+   * 将文章按年份分组
+   * 
+   * @returns 年份分组数组，按年份倒序排列
+   */
   const groupByYear = (): YearGroup[] => {
     const groups: { [key: string]: PostMeta[] } = {};
     
@@ -44,6 +69,12 @@ const Archives = () => {
       .map(year => ({ year, posts: groups[year] }));
   };
 
+  /**
+   * 格式化日期为月日显示
+   * 
+   * @param dateString - ISO 8601 格式的日期字符串
+   * @returns 格式化后的月日字符串（如 "01-15"）
+   */
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     return date.toLocaleDateString('zh-CN', {

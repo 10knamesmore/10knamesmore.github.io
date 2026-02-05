@@ -4,12 +4,30 @@ import type { PostMeta } from '../types';
 import PostCard from '../components/common/PostCard';
 import './Tags.css';
 
+/**
+ * 站点元数据接口
+ */
 interface Metadata {
+  /** 文章总数 */
   totalPosts: number;
+  /** 分类列表 */
   categories: string[];
+  /** 标签列表 */
   tags: string[];
 }
 
+/**
+ * 标签页组件
+ * 
+ * @returns React 组件
+ * 
+ * @remarks
+ * 展示所有标签的云图，支持标签筛选功能。主要功能：
+ * - 显示所有标签及其文章数量
+ * - 点击标签筛选对应文章
+ * - 使用 URL 查询参数保持筛选状态
+ * - 再次点击已选标签可取消筛选
+ */
 const Tags = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const selectedTag = searchParams.get('tag');
@@ -20,6 +38,9 @@ const Tags = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    /**
+     * 加载元数据和文章索引
+     */
     const loadData = async () => {
       try {
         const [metaResponse, postsResponse] = await Promise.all([
@@ -50,6 +71,14 @@ const Tags = () => {
     }
   }, [selectedTag, posts]);
 
+  /**
+   * 处理标签点击事件
+   * 
+   * @param tag - 点击的标签名称
+   * 
+   * @remarks
+   * 点击已选标签会取消筛选，点击未选标签会进行筛选
+   */
   const handleTagClick = (tag: string) => {
     if (selectedTag === tag) {
       setSearchParams({});
@@ -58,6 +87,12 @@ const Tags = () => {
     }
   };
 
+  /**
+   * 获取指定标签的文章数量
+   * 
+   * @param tag - 标签名称
+   * @returns 包含该标签的文章数量
+   */
   const getTagCount = (tag: string) => {
     return posts.filter(post => post.tags.includes(tag)).length;
   };

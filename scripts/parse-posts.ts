@@ -96,12 +96,12 @@ function generateExcerpt(content: string, length: number = 200): string {
   const plainText = content
     .replace(/```[\s\S]*?```/g, '')
     .replace(/#+\s/g, '')
-    .replace(/\[([^\]]+)\]\([^\)]+\)/g, '$1')
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
     .replace(/[*_~`]/g, '')
     .trim();
-  
-  return plainText.length > length 
-    ? plainText.slice(0, length) + '...' 
+
+  return plainText.length > length
+    ? plainText.slice(0, length) + '...'
     : plainText;
 }
 
@@ -173,10 +173,10 @@ function parseMarkdownFile(file: string): PostData {
   const filePath = path.join(POSTS_DIR, file);
   const fileContent = fs.readFileSync(filePath, 'utf-8');
   const { data, content } = matter(fileContent);
-  
+
   const frontMatter = data as PostFrontMatter;
   const slug = file.replace(/\.md$/, '');
-  
+
   const postData: PostData = {
     slug,
     title: frontMatter.title || slug,
@@ -231,7 +231,7 @@ function savePostData(post: PostData): void {
  */
 function savePostsIndex(posts: PostMeta[]): void {
   posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-  
+
   fs.writeFileSync(
     path.join(OUTPUT_DIR, 'posts-index.json'),
     JSON.stringify(posts, null, 2)
@@ -261,7 +261,7 @@ function savePostsIndex(posts: PostMeta[]): void {
 function generateMetadata(posts: PostMeta[]): Metadata {
   const categories = new Set<string>();
   const tags = new Set<string>();
-  
+
   posts.forEach(post => {
     post.categories.forEach(cat => categories.add(cat));
     post.tags.forEach(tag => tags.add(tag));
@@ -321,12 +321,12 @@ function parseMarkdownFiles(): void {
   // 解析每个文件
   files.forEach(file => {
     const postData = parseMarkdownFile(file);
-    
+
     // 保存单篇文章数据
     savePostData(postData);
-    
+
     // 添加到索引（不包含内容）
-    const { content, ...postMeta } = postData;
+    const { ...postMeta } = postData;
     postsIndex.push(postMeta);
   });
 

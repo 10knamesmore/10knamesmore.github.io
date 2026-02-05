@@ -1,5 +1,13 @@
 import './Footer.css';
 
+/**
+ * 网站底部组件
+ * 
+ * @returns React 组件
+ * 
+ * @remarks
+ * 显示版权信息和技术栈说明，年份自动更新为当前年份
+ */
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
