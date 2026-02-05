@@ -1,0 +1,132 @@
+.archives-page {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.archives-header {
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.archives-header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 0.5rem 0;
+}
+
+.archives-subtitle {
+  color: #6b7280;
+  font-size: 1rem;
+}
+
+.archives-timeline {
+  position: relative;
+}
+
+.year-group {
+  margin-bottom: 3rem;
+}
+
+.year-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #3b82f6;
+  margin: 0 0 1.5rem 0;
+  padding-left: 2rem;
+  position: relative;
+}
+
+.year-title::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 12px;
+  background: #3b82f6;
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
+}
+
+.posts-timeline {
+  padding-left: 2rem;
+  border-left: 2px solid #e5e7eb;
+  margin-left: 6px;
+}
+
+.timeline-item {
+  display: flex;
+  align-items: baseline;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -2.125rem;
+  top: 0.5rem;
+  width: 8px;
+  height: 8px;
+  background: #fff;
+  border: 2px solid #3b82f6;
+  border-radius: 50%;
+}
+
+.timeline-date {
+  color: #9ca3af;
+  font-size: 0.875rem;
+  font-weight: 500;
+  min-width: 4rem;
+  flex-shrink: 0;
+}
+
+.timeline-link {
+  text-decoration: none;
+  flex: 1;
+}
+
+.timeline-title {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #374151;
+  margin: 0;
+  transition: color 0.2s;
+}
+
+.timeline-link:hover .timeline-title {
+  color: #3b82f6;
+}
+
+@media (max-width: 768px) {
+  .archives-header h1 {
+    font-size: 2rem;
+  }
+
+  .year-title {
+    font-size: 1.6rem;
+    padding-left: 1.5rem;
+  }
+
+  .posts-timeline {
+    padding-left: 1.5rem;
+  }
+
+  .timeline-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .timeline-item::before {
+    left: -1.625rem;
+  }
+
+  .timeline-title {
+    font-size: 1rem;
+  }
+}

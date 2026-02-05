@@ -1,0 +1,23 @@
+.footer {
+  background: #f9fafb;
+  border-top: 1px solid #e5e7eb;
+  margin-top: auto;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  color: #6b7280;
+}
+
+.footer-container p {
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+}
+
+.footer-subtitle {
+  font-size: 0.85rem;
+  opacity: 0.8;
+}

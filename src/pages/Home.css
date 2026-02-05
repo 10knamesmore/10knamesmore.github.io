@@ -1,0 +1,15 @@
+.home {
+  width: 100%;
+}
+
+.posts-list {
+  margin-bottom: 2rem;
+}
+
+.loading,
+.empty {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: #6b7280;
+  font-size: 1.1rem;
+}
