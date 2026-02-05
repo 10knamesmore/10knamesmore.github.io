@@ -1,0 +1,88 @@
+/**
+ * 头部导航组件样式
+ */
+
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.header {
+  background: $color-bg-white;
+  border-bottom: 1px solid $color-border;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: $shadow-sm;
+
+  &-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: $spacing-4 $spacing-8;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @include respond-to(md) {
+      padding: $spacing-4;
+    }
+  }
+
+  &-logo {
+    text-decoration: none;
+    color: #111827;
+
+    h1 {
+      font-size: $font-size-2xl;
+      font-weight: 700;
+      margin: 0;
+      transition: color $transition-base;
+
+      @include respond-to(md) {
+        font-size: $font-size-xl;
+      }
+    }
+
+    &:hover h1 {
+      color: $color-primary;
+    }
+  }
+
+  &-nav {
+    display: flex;
+    gap: $spacing-8;
+
+    @include respond-to(md) {
+      gap: $spacing-4;
+    }
+  }
+}
+
+.nav-link {
+  text-decoration: none;
+  color: $color-text-secondary;
+  font-weight: 500;
+  transition: color $transition-base;
+  position: relative;
+
+  &:hover {
+    color: $color-primary;
+
+    &::after {
+      width: 100%;
+    }
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: $color-primary;
+    transition: width $transition-base;
+  }
+
+  @include respond-to(md) {
+    font-size: 0.9rem;
+  }
+}

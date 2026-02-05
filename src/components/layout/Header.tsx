@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import './Header.css';
+import styles from './Header.module.scss';
 
 /**
  * 网站头部导航组件
@@ -13,15 +13,15 @@ import './Header.css';
  */
 const Header = () => {
   return (
-    <header className="header">
-      <div className="header-container">
-        <Link to="/" className="header-logo">
+    <header className={styles.header}>
+      <div className={styles.headerContainer}>
+        <Link to="/" className={styles.headerLogo}>
           <h1>王二的博客</h1>
         </Link>
-        <nav className="header-nav">
-          <Link to="/" className="nav-link">首页</Link>
-          <Link to="/tags" className="nav-link">标签</Link>
-          <Link to="/archives" className="nav-link">归档</Link>
+        <nav className={styles.headerNav}>
+          <Link to="/" className={styles.navLink}>首页</Link>
+          <Link to="/tags" className={styles.navLink}>标签</Link>
+          <Link to="/archives" className={styles.navLink}>归档</Link>
         </nav>
       </div>
     </header>

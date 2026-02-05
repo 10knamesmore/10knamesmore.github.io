@@ -1,0 +1,30 @@
+/**
+ * App 全局样式
+ */
+
+@use './styles/variables' as *;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: $font-family-base;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.not-found,
+.loading,
+.empty {
+  text-align: center;
+  padding: $spacing-16 $spacing-8;
+  color: $color-text-secondary;
+  font-size: $font-size-lg;
+}
+
+.loading {
+  font-size: $font-size-base;
+}

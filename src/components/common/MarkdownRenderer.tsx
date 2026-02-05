@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { highlightCode } from '../../utils/highlight';
-import './MarkdownRenderer.css';
+import styles from './MarkdownRenderer.module.scss';
 
 /**
  * Markdown 渲染器组件属性
@@ -104,7 +104,7 @@ const MarkdownRenderer = ({ content }: MarkdownRendererProps) => {
     containerRef.current.innerHTML = html;
   }, [content]);
 
-  return <div ref={containerRef} className="markdown-content" />;
+  return <div ref={containerRef} className={styles.markdownContent} />;
 };
 
 /**

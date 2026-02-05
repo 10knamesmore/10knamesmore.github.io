@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import type { PostMeta } from '../types';
 import PostCard from '../components/common/PostCard';
 import Pagination from '../components/common/Pagination';
-import './Home.css';
+import styles from './Home.module.scss';
 
 /** 每页显示的文章数量 */
 const POSTS_PER_PAGE = 10;
@@ -58,16 +58,16 @@ const Home = () => {
   };
 
   if (loading) {
-    return <div className="loading">加载中...</div>;
+    return <div className={styles.loading}>加载中...</div>;
   }
 
   if (posts.length === 0) {
-    return <div className="empty">暂无文章</div>;
+    return <div className={styles.empty}>暂无文章</div>;
   }
 
   return (
-    <div className="home">
-      <div className="posts-list">
+    <div className={styles.home}>
+      <div className={styles.postsList}>
         {currentPosts.map(post => (
           <PostCard key={post.slug} post={post} />
         ))}

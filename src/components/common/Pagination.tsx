@@ -1,4 +1,4 @@
-import './Pagination.css';
+import styles from './Pagination.module.scss';
 
 /**
  * 分页组件属性
@@ -76,33 +76,33 @@ const Pagination = ({ currentPage, totalPages, onPageChange }: PaginationProps) 
   };
 
   return (
-    <div className="pagination">
+    <div className={styles.pagination}>
       <button
-        className="pagination-btn"
+        className={styles.paginationBtn}
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
       >
         上一页
       </button>
 
-      <div className="pagination-numbers">
+      <div className={styles.paginationNumbers}>
         {getPageNumbers().map((page, index) => (
           typeof page === 'number' ? (
             <button
               key={index}
-              className={`pagination-number ${currentPage === page ? 'active' : ''}`}
+              className={`${styles.paginationNumber} ${currentPage === page ? styles.active : ''}`}
               onClick={() => onPageChange(page)}
             >
               {page}
             </button>
           ) : (
-            <span key={index} className="pagination-ellipsis">{page}</span>
+            <span key={index} className={styles.paginationEllipsis}>{page}</span>
           )
         ))}
       </div>
 
       <button
-        className="pagination-btn"
+        className={styles.paginationBtn}
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
       >

@@ -1,0 +1,29 @@
+/**
+ * 全局样式
+ * 
+ * @remarks
+ * 定义页面的基础样式和重置样式
+ */
+
+@use './styles/variables' as *;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: $font-family-base;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: $color-text-primary;
+  background-color: $color-bg-white;
+}

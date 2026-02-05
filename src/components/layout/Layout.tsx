@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import Header from './Header';
 import Footer from './Footer';
-import './Layout.css';
+import styles from './Layout.module.scss';
 
 /**
  * 页面布局组件属性
@@ -31,9 +31,9 @@ interface LayoutProps {
  */
 const Layout = ({ children }: LayoutProps) => {
   return (
-    <div className="layout">
+    <div className={styles.layout}>
       <Header />
-      <main className="main-content">
+      <main className={styles.mainContent}>
         {children}
       </main>
       <Footer />

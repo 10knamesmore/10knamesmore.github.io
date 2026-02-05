@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import type { Post } from '../types';
 import MarkdownRenderer from '../components/common/MarkdownRenderer';
-import './PostDetail.css';
+import styles from './PostDetail.module.scss';
 
 /**
  * 文章详情页组件
@@ -64,42 +64,42 @@ const PostDetail = () => {
   };
 
   if (loading) {
-    return <div className="loading">加载中...</div>;
+    return <div className={styles.loading}>加载中...</div>;
   }
 
   if (!post) {
-    return <div className="empty">文章不存在</div>;
+    return <div className={styles.empty}>文章不存在</div>;
   }
 
   return (
-    <article className="post-detail">
-      <header className="post-header">
-        <h1 className="post-title">{post.title}</h1>
-        <div className="post-meta">
-          <time className="post-date">{formatDate(post.date)}</time>
+    <article className={styles.postDetail}>
+      <header className={styles.postHeader}>
+        <h1 className={styles.postTitle}>{post.title}</h1>
+        <div className={styles.postMeta}>
+          <time className={styles.postDate}>{formatDate(post.date)}</time>
           {post.categories.length > 0 && (
-            <div className="post-categories">
+            <div className={styles.postCategories}>
               {post.categories.map(category => (
-                <span key={category} className="category-tag">{category}</span>
+                <span key={category} className={styles.categoryTag}>{category}</span>
               ))}
             </div>
           )}
         </div>
         {post.tags.length > 0 && (
-          <div className="post-tags">
+          <div className={styles.postTags}>
             {post.tags.map(tag => (
-              <span key={tag} className="tag-item">#{tag}</span>
+              <span key={tag} className={styles.tagItem}>#{tag}</span>
             ))}
           </div>
         )}
       </header>
 
-      <div className="post-content">
+      <div className={styles.postContent}>
         <MarkdownRenderer content={post.content} />
       </div>
 
-      <footer className="post-footer">
-        <button className="back-btn" onClick={() => navigate(-1)}>
+      <footer className={styles.postFooter}>
+        <button className={styles.backBtn} onClick={() => navigate(-1)}>
           ← 返回
         </button>
       </footer>

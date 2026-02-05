@@ -4,7 +4,7 @@ import Home from './pages/Home';
 import PostDetail from './pages/PostDetail';
 import Tags from './pages/Tags';
 import Archives from './pages/Archives';
-import './App.css';
+import styles from './App.module.scss';
 
 /**
  * 应用根组件
@@ -28,7 +28,7 @@ function App() {
           <Route path="/post/:slug" element={<PostDetail />} />
           <Route path="/tags" element={<Tags />} />
           <Route path="/archives" element={<Archives />} />
-          <Route path="*" element={<div className="not-found">页面不存在</div>} />
+          <Route path="*" element={<div className={styles.notFound}>页面不存在</div>} />
         </Routes>
       </Layout>
     </BrowserRouter>

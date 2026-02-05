@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import type { PostMeta } from '../types';
 import PostCard from '../components/common/PostCard';
-import './Tags.css';
+import styles from './Tags.module.scss';
 
 /**
  * 站点元数据接口
@@ -98,35 +98,35 @@ const Tags = () => {
   };
 
   if (loading) {
-    return <div className="loading">加载中...</div>;
+    return <div className={styles.loading}>加载中...</div>;
   }
 
   return (
-    <div className="tags-page">
-      <header className="tags-header">
+    <div className={styles.tagsPage}>
+      <header className={styles.tagsHeader}>
         <h1>标签</h1>
-        <p className="tags-subtitle">共 {metadata?.tags.length || 0} 个标签</p>
+        <p className={styles.tagsSubtitle}>共 {metadata?.tags.length || 0} 个标签</p>
       </header>
 
-      <div className="tags-cloud">
+      <div className={styles.tagsCloud}>
         {metadata?.tags.map(tag => (
           <button
             key={tag}
-            className={`tag-button ${selectedTag === tag ? 'active' : ''}`}
+            className={`${styles.tagButton} ${selectedTag === tag ? 'active' : ''}`}
             onClick={() => handleTagClick(tag)}
           >
             {tag}
-            <span className="tag-count">{getTagCount(tag)}</span>
+            <span className={styles.tagCount}>{getTagCount(tag)}</span>
           </button>
         ))}
       </div>
 
       {selectedTag && (
-        <div className="filtered-posts">
-          <h2 className="filter-title">
+        <div className={styles.filteredPosts}>
+          <h2 className={styles.filterTitle}>
             标签: {selectedTag} ({filteredPosts.length})
           </h2>
-          <div className="posts-list">
+          <div className={styles.postsList}>
             {filteredPosts.map(post => (
               <PostCard key={post.slug} post={post} />
             ))}

@@ -1,0 +1,86 @@
+/**
+ * 文章卡片组件样式
+ */
+
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.post-card {
+  background: $color-bg-white;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  padding: $spacing-6;
+  transition: all $transition-slow;
+  margin-bottom: $spacing-6;
+
+  &:hover {
+    box-shadow: $shadow-md;
+    transform: translateY(-2px);
+    border-color: $color-primary;
+
+    .post-card-title {
+      color: $color-primary;
+    }
+  }
+
+  &-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  &-title {
+    font-size: $font-size-2xl;
+    font-weight: 700;
+    color: #111827;
+    margin: 0 0 $spacing-3 0;
+    transition: color $transition-base;
+
+    @include respond-to(md) {
+      font-size: $font-size-xl;
+    }
+  }
+
+  &-excerpt {
+    color: $color-text-secondary;
+    line-height: 1.6;
+    margin: 0 0 $spacing-4 0;
+    font-size: 0.95rem;
+
+    @include respond-to(md) {
+      font-size: 0.9rem;
+    }
+  }
+
+  &-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: $spacing-4;
+    flex-wrap: wrap;
+  }
+
+  @include respond-to(md) {
+    padding: $spacing-4;
+  }
+}
+
+.post-date {
+  color: $color-text-muted;
+  font-size: $font-size-sm;
+}
+
+.post-tags {
+  display: flex;
+  gap: $spacing-2;
+  flex-wrap: wrap;
+}
+
+.post-tag {
+  background: $color-bg-gray-100;
+  color: $color-text-secondary;
+  padding: $spacing-1 $spacing-3;
+  border-radius: $spacing-4;
+  font-size: 0.8rem;
+  font-weight: 500;
+}

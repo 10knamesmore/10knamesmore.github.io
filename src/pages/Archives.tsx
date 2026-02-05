@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import type { PostMeta } from '../types';
-import './Archives.css';
+import styles from './Archives.module.scss';
 
 /**
  * 年份分组接口
@@ -84,28 +84,28 @@ const Archives = () => {
   };
 
   if (loading) {
-    return <div className="loading">加载中...</div>;
+    return <div className={styles.loading}>加载中...</div>;
   }
 
   const yearGroups = groupByYear();
 
   return (
-    <div className="archives-page">
-      <header className="archives-header">
+    <div className={styles.archivesPage}>
+      <header className={styles.archivesHeader}>
         <h1>归档</h1>
-        <p className="archives-subtitle">共 {posts.length} 篇文章</p>
+        <p className={styles.archivesSubtitle}>共 {posts.length} 篇文章</p>
       </header>
 
-      <div className="archives-timeline">
+      <div className={styles.archivesTimeline}>
         {yearGroups.map(({ year, posts: yearPosts }) => (
-          <div key={year} className="year-group">
-            <h2 className="year-title">{year}</h2>
-            <div className="posts-timeline">
+          <div key={year} className={styles.yearGroup}>
+            <h2 className={styles.yearTitle}>{year}</h2>
+            <div className={styles.postsTimeline}>
               {yearPosts.map(post => (
-                <div key={post.slug} className="timeline-item">
-                  <time className="timeline-date">{formatDate(post.date)}</time>
-                  <Link to={`/post/${post.slug}`} className="timeline-link">
-                    <h3 className="timeline-title">{post.title}</h3>
+                <div key={post.slug} className={styles.timelineItem}>
+                  <time className={styles.timelineDate}>{formatDate(post.date)}</time>
+                  <Link to={`/post/${post.slug}`} className={styles.timelineLink}>
+                    <h3 className={styles.timelineTitle}>{post.title}</h3>
                   </Link>
                 </div>
               ))}
