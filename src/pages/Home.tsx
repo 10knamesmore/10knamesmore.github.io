@@ -3,6 +3,7 @@ import type { PostMeta } from '../types';
 import PostCard from '../components/common/PostCard';
 import Pagination from '../components/common/Pagination';
 import styles from './Home.module.scss';
+import { useDocumentTitle } from '../hooks/useDocumentTitle';
 
 /** 每页显示的文章数量 */
 const POSTS_PER_PAGE = 10;
@@ -20,6 +21,8 @@ const POSTS_PER_PAGE = 10;
  * - 加载状态和空状态处理
  */
 const Home = () => {
+  useDocumentTitle();
+
   const [posts, setPosts] = useState<PostMeta[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(true);

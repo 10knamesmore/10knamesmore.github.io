@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import type { Post } from '../types';
 import MarkdownRenderer from '../components/common/MarkdownRenderer';
 import styles from './PostDetail.module.scss';
+import { useDocumentTitle } from '../hooks/useDocumentTitle';
 
 /**
  * 文章详情页组件
@@ -22,6 +23,8 @@ const PostDetail = () => {
   const navigate = useNavigate();
   const [post, setPost] = useState<Post | null>(null);
   const [loading, setLoading] = useState(true);
+
+  useDocumentTitle(post?.title);
 
   useEffect(() => {
     /**

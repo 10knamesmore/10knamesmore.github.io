@@ -28,7 +28,7 @@ function App() {
           <Route path="/post/:slug" element={<PostDetail />} />
           <Route path="/tags" element={<Tags />} />
           <Route path="/archives" element={<Archives />} />
-          <Route path="*" element={<div className={styles.notFound}>页面不存在</div>} />
+          <Route path="*" element={<div className={styles.notFound}>404 — 页面不存在（placeholder）</div>} />
         </Routes>
       </Layout>
     </BrowserRouter>

@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import type { PostMeta } from '../types';
 import PostCard from '../components/common/PostCard';
 import styles from './Tags.module.scss';
+import { useDocumentTitle } from '../hooks/useDocumentTitle';
 
 /**
  * 站点元数据接口
@@ -29,6 +30,8 @@ interface Metadata {
  * - 再次点击已选标签可取消筛选
  */
 const Tags = () => {
+  useDocumentTitle('标签');
+
   const [searchParams, setSearchParams] = useSearchParams();
   const selectedTag = searchParams.get('tag');
   

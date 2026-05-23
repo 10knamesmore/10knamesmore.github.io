@@ -11,6 +11,10 @@ const OUTPUT_DIR = path.join(__dirname, '../public/data');
 const POSTS_OUTPUT = path.join(OUTPUT_DIR, 'posts');
 const IMAGES_SRC = path.join(__dirname, '../source/images');
 const IMAGES_DEST = path.join(__dirname, '../public/images');
+const PUBLIC_DIR = path.join(__dirname, '../public');
+
+/** 站点公开 URL（用于 SEO 文件中的绝对链接） */
+const SITE_URL = 'https://10knamesmore.github.io';
 
 /**
  * 文章前置元数据接口
@@ -62,13 +66,15 @@ interface Metadata {
  * @example
  * ```ts
  * ensureArray('tag1') // ['tag1']
+ * ensureArray('rust, 源码') // ['rust', '源码']（按逗号拆分并 trim）
  * ensureArray(['tag1', 'tag2']) // ['tag1', 'tag2']
  * ensureArray(undefined) // []
  * ```
  */
 function ensureArray(value: string | string[] | undefined): string[] {
   if (!value) return [];
-  return Array.isArray(value) ? value : [value];
+  const list = Array.isArray(value) ? value : String(value).split(',');
+  return list.map(item => String(item).trim()).filter(Boolean);
 }
 
 /**
@@ -282,6 +288,68 @@ function generateMetadata(posts: PostMeta[]): Metadata {
 }
 
 /**
+ * 转义 XML 特殊字符，使文本可安全嵌入 XML
+ *
+ * @param text - 原始文本
+ * @returns 转义后的文本
+ */
+function escapeXml(text: string): string {
+  return text
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&apos;');
+}
+
+/**
+ * 构造单篇文章的绝对 URL
+ *
+ * @param slug - 文章 slug（可能含中文，按 path 段编码）
+ * @returns 文章详情页的绝对 URL
+ */
+function postUrl(slug: string): string {
+  return `${SITE_URL}/post/${encodeURIComponent(slug)}`;
+}
+
+/**
+ * 生成 SEO 静态文件：robots.txt、sitemap.xml、feed.xml（RSS 2.0）
+ *
+ * @param posts - 已按日期倒序排列的文章索引
+ *
+ * @remarks
+ * 输出到 public/ 根目录，构建后位于站点根，`/sitemap.xml`、`/feed.xml`、
+ * `/robots.txt` 可直接访问。文章 URL 的中文 slug 用 encodeURIComponent 编码，
+ * 标题/摘要文本用 escapeXml 转义。
+ */
+function generateSeoFiles(posts: PostMeta[]): void {
+  // robots.txt：允许全部抓取并指向 sitemap
+  const robots = `User-agent: *\nAllow: /\n\nSitemap: ${SITE_URL}/sitemap.xml\n`;
+  fs.writeFileSync(path.join(PUBLIC_DIR, 'robots.txt'), robots);
+
+  // sitemap.xml：静态页 + 每篇文章
+  const staticUrls = ['/', '/tags', '/archives'].map(
+    p => `  <url>\n    <loc>${SITE_URL}${p}</loc>\n  </url>`
+  );
+  const postUrls = posts.map(post => {
+    const lastmod = new Date(post.date).toISOString().slice(0, 10);
+    return `  <url>\n    <loc>${postUrl(post.slug)}</loc>\n    <lastmod>${lastmod}</lastmod>\n  </url>`;
+  });
+  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${[...staticUrls, ...postUrls].join('\n')}\n</urlset>\n`;
+  fs.writeFileSync(path.join(PUBLIC_DIR, 'sitemap.xml'), sitemap);
+
+  // feed.xml：RSS 2.0
+  const items = posts.map(post => {
+    const url = postUrl(post.slug);
+    return `    <item>\n      <title>${escapeXml(post.title)}</title>\n      <link>${url}</link>\n      <guid isPermaLink="true">${url}</guid>\n      <pubDate>${new Date(post.date).toUTCString()}</pubDate>\n      <description>${escapeXml(post.excerpt)}</description>\n    </item>`;
+  });
+  const rss = `<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0">\n  <channel>\n    <title>王二的博客</title>\n    <link>${SITE_URL}/</link>\n    <description>王二的个人博客</description>\n    <language>zh-CN</language>\n    <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>\n${items.join('\n')}\n  </channel>\n</rss>\n`;
+  fs.writeFileSync(path.join(PUBLIC_DIR, 'feed.xml'), rss);
+
+  console.log('🔎 Generated robots.txt, sitemap.xml, feed.xml');
+}
+
+/**
  * 解析所有 Markdown 文件的主函数
  * 
  * @remarks
@@ -325,8 +393,16 @@ function parseMarkdownFiles(): void {
     // 保存单篇文章数据
     savePostData(postData);
 
-    // 添加到索引（不包含内容）
-    const { ...postMeta } = postData;
+    // 添加到索引（剔除正文，索引只保留元数据，避免列表页下载冗余）
+    const postMeta: PostMeta = {
+      slug: postData.slug,
+      title: postData.title,
+      date: postData.date,
+      categories: postData.categories,
+      tags: postData.tags,
+      excerpt: postData.excerpt,
+      cover: postData.cover,
+    };
     postsIndex.push(postMeta);
   });
 
@@ -335,6 +411,9 @@ function parseMarkdownFiles(): void {
 
   // 生成并保存元数据
   const metadata = generateMetadata(postsIndex);
+
+  // 生成 SEO 静态文件（robots.txt / sitemap.xml / feed.xml）
+  generateSeoFiles(postsIndex);
 
   // 输出统计信息
   console.log(`✅ Parsed ${files.length} posts`);

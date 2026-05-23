@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import type { PostMeta } from '../types';
 import styles from './Archives.module.scss';
+import { useDocumentTitle } from '../hooks/useDocumentTitle';
 
 /**
  * 年份分组接口
@@ -26,6 +27,8 @@ interface YearGroup {
  * - 显示文章总数统计
  */
 const Archives = () => {
+  useDocumentTitle('归档');
+
   const [posts, setPosts] = useState<PostMeta[]>([]);
   const [loading, setLoading] = useState(true);
 

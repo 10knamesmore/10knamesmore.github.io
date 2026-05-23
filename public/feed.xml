@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>王二的博客</title>
+    <link>https://10knamesmore.github.io/</link>
+    <description>王二的个人博客</description>
+    <language>zh-CN</language>
+    <lastBuildDate>Sat, 23 May 2026 19:42:52 GMT</lastBuildDate>
+    <item>
+      <title>rust-analyzer阅读记录(0): 入口与main函数</title>
+      <link>https://10knamesmore.github.io/post/rust-analyzer%E9%98%85%E8%AF%BB%E8%AE%B0%E5%BD%95-0-%E5%85%A5%E5%8F%A3%E4%B8%8Exflags</link>
+      <guid isPermaLink="true">https://10knamesmore.github.io/post/rust-analyzer%E9%98%85%E8%AF%BB%E8%AE%B0%E5%BD%95-0-%E5%85%A5%E5%8F%A3%E4%B8%8Exflags</guid>
+      <pubDate>Tue, 03 Feb 2026 22:57:48 GMT</pubDate>
+      <description>before all
+
+rust-analyzer 是一个为 rust 语言提供的 LSP, 提供了代码补全, 语法检查, 跳转, 重构, 格式化, lint等功能
+
+这个合集 是更详细的解释
+
+RA 仓库
+
+ra 二进制入口位置在 这
+
+!主函数入口
+
+rustcwrapper 先跳过, 看RustAnalyzer::fromenvorexit()的实现函数
+
+命令行解析
+
+!xflag
+
+xf...</description>
+    </item>
+    <item>
+      <title>一个纯htmlcanvas实现的三维渲染</title>
+      <link>https://10knamesmore.github.io/post/%E4%B8%80%E4%B8%AA%E7%BA%AFhtmlcanvas%E5%AE%9E%E7%8E%B0%E7%9A%84%E4%B8%89%E7%BB%B4%E6%B8%B2%E6%9F%93</link>
+      <guid isPermaLink="true">https://10knamesmore.github.io/post/%E4%B8%80%E4%B8%AA%E7%BA%AFhtmlcanvas%E5%AE%9E%E7%8E%B0%E7%9A%84%E4%B8%89%E7%BB%B4%E6%B8%B2%E6%9F%93</guid>
+      <pubDate>Fri, 02 Jan 2026 20:37:12 GMT</pubDate>
+      <description>来源 https://www.bilibili.com/video/BV1TzBoBqEY6， 觉得十分有意思，遂用react重新实现一遍</description>
+    </item>
+    <item>
+      <title>一个仅依赖系统调用的sleep</title>
+      <link>https://10knamesmore.github.io/post/%E4%B8%80%E4%B8%AA%E4%BB%85%E4%BE%9D%E8%B5%96%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E7%9A%84sleep</link>
+      <guid isPermaLink="true">https://10knamesmore.github.io/post/%E4%B8%80%E4%B8%AA%E4%BB%85%E4%BE%9D%E8%B5%96%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E7%9A%84sleep</guid>
+      <pubDate>Fri, 02 Jan 2026 18:32:13 GMT</pubDate>
+      <description>这是一个完全不依赖标准库的 sleep命令，仅依赖 Linux x8664 的系统调用
+
+代码
+
+
+
+系统调用包装
+
+- syscall1 / syscall3：用内联汇编触发 syscall 指令。
+- 通过约定寄存器传参：rax=调用号，rdi/rsi/rdx=前三个参数。
+- 返回值同样从 rax 取回，这与 Linux x8664 ABI 一致。
+
+自己实现的“小工具”
+
+- parsei...</description>
+    </item>
+    <item>
+      <title>随想随想</title>
+      <link>https://10knamesmore.github.io/post/%E9%9A%8F%E6%83%B3%E9%9A%8F%E6%83%B3</link>
+      <guid isPermaLink="true">https://10knamesmore.github.io/post/%E9%9A%8F%E6%83%B3%E9%9A%8F%E6%83%B3</guid>
+      <pubDate>Thu, 29 May 2025 22:33:14 GMT</pubDate>
+      <description>区分事实和观点</description>
+    </item>
+    <item>
+      <title>rust中一个容易忘记的if_let中变量生命周期问题</title>
+      <link>https://10knamesmore.github.io/post/rust%E4%B8%AD%E4%B8%80%E4%B8%AA%E5%AE%B9%E6%98%93%E5%BF%98%E8%AE%B0%E7%9A%84if-let%E4%B8%AD%E5%8F%98%E9%87%8F%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E9%97%AE%E9%A2%98</link>
+      <guid isPermaLink="true">https://10knamesmore.github.io/post/rust%E4%B8%AD%E4%B8%80%E4%B8%AA%E5%AE%B9%E6%98%93%E5%BF%98%E8%AE%B0%E7%9A%84if-let%E4%B8%AD%E5%8F%98%E9%87%8F%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E9%97%AE%E9%A2%98</guid>
+      <pubDate>Sat, 24 May 2025 16:39:10 GMT</pubDate>
+      <description>引言
+
+最近在使用rust编写代码时遇到了一个一开始没想明白的生命周期错误,大致如下:
+
+
+错误是
+
+问GPT,回答是在第一行借用self.playlistcover.get(&amp;id) 的时候将 borrow immutable,并且生命周期持续到了函数结束
+
+我想的是if let语句都结束了,内部都返回了,为什么这个借用的生命周期还会持续呢?
+
+查询一些资料后才发现, 其实还是rust基础有忘记...</description>
+    </item>
+    <item>
+      <title>协变和逆变浅析浅析</title>
+      <link>https://10knamesmore.github.io/post/%E5%8D%8F%E5%8F%98%E5%92%8C%E9%80%86%E5%8F%98%E6%B5%85%E6%9E%90%E6%B5%85%E6%9E%90</link>
+      <guid isPermaLink="true">https://10knamesmore.github.io/post/%E5%8D%8F%E5%8F%98%E5%92%8C%E9%80%86%E5%8F%98%E6%B5%85%E6%9E%90%E6%B5%85%E6%9E%90</guid>
+      <pubDate>Fri, 23 May 2025 15:23:51 GMT</pubDate>
+      <description>什么是变性（Variance）？
+
+变性是描述类型构造器 F&lt;T&gt; 如何随着 T 的子 类型关系变化而变化的一种性质。
+
+设 T1 &lt;: T2（即 T1 是 T2 的子类型），我们关心：
+
+&gt; 那么 F&lt;T1&gt; 和 F&lt;T2&gt; 之间是否也存在子类型关系？
+
+这就是变性问题的本质。
+
+比如,对于没有构造器的raw class
+
+
+
+这里我们可以很自然的传入一个 Cat 类型, 因为 里氏替换原则 的...</description>
+    </item>
+    <item>
+      <title>为什么要使用base64编码</title>
+      <link>https://10knamesmore.github.io/post/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8base64%E7%BC%96%E7%A0%81</link>
+      <guid isPermaLink="true">https://10knamesmore.github.io/post/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8base64%E7%BC%96%E7%A0%81</guid>
+      <pubDate>Sat, 15 Feb 2025 11:19:51 GMT</pubDate>
+      <description>为什么要使用base64编码
+    &gt; 为了解决二进制文件的网络传输
+
+为什么不直接逐字节转为ascii文本?
+&gt; 因为ascii中有控制字符,有 回车,换行这样会破坏http格式的字符
+
+&gt; 所以需要一种能实现安全传输的编码
+
+需求:
+- 有且仅包含可打印字符(字母,标点)
+- 冗余尽可能小
+
+即(纯数学考虑)
+
+原始二进制文件,一字节8比特.
+
+假设这种新编码x比特
+
+即
+
+x &lt; 8
+
+冗...</description>
+    </item>
+    <item>
+      <title>为什么我们需要操作系统才能运行程序</title>
+      <link>https://10knamesmore.github.io/post/%E4%B8%BA%E4%BB%80%E4%B9%88%E6%88%91%E4%BB%AC%E9%9C%80%E8%A6%81%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%89%8D%E8%83%BD%E8%BF%90%E8%A1%8C%E7%A8%8B%E5%BA%8F</link>
+      <guid isPermaLink="true">https://10knamesmore.github.io/post/%E4%B8%BA%E4%BB%80%E4%B9%88%E6%88%91%E4%BB%AC%E9%9C%80%E8%A6%81%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%89%8D%E8%83%BD%E8%BF%90%E8%A1%8C%E7%A8%8B%E5%BA%8F</guid>
+      <pubDate>Sat, 25 Jan 2025 16:24:00 GMT</pubDate>
+      <description></description>
+    </item>
+    <item>
+      <title>两种rust多线程方式的示例程序</title>
+      <link>https://10knamesmore.github.io/post/%E4%B8%A4%E7%A7%8Drust%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%96%B9%E5%BC%8F%E7%9A%84%E7%A4%BA%E4%BE%8B%E7%A8%8B%E5%BA%8F</link>
+      <guid isPermaLink="true">https://10knamesmore.github.io/post/%E4%B8%A4%E7%A7%8Drust%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%96%B9%E5%BC%8F%E7%9A%84%E7%A4%BA%E4%BE%8B%E7%A8%8B%E5%BA%8F</guid>
+      <pubDate>Thu, 23 Jan 2025 00:49:51 GMT</pubDate>
+      <description></description>
+    </item>
+    <item>
+      <title>2025听歌纪录</title>
+      <link>https://10knamesmore.github.io/post/2025%E5%90%AC%E6%AD%8C%E7%BA%AA%E5%BD%95</link>
+      <guid isPermaLink="true">https://10knamesmore.github.io/post/2025%E5%90%AC%E6%AD%8C%E7%BA%AA%E5%BD%95</guid>
+      <pubDate>Sat, 04 Jan 2025 15:46:30 GMT</pubDate>
+      <description>| 日期     | 专辑名                                 | 风格              | 发行日期  | 乐队                  | 分(10) |
+| -------- | -------------------------------------- | ----------------- | --------- | ---------...</description>
+    </item>
+    <item>
+      <title>理想国笔记(一) 习俗正义观</title>
+      <link>https://10knamesmore.github.io/post/%E7%90%86%E6%83%B3%E5%9B%BD%E7%AC%94%E8%AE%B0-%E4%B8%80-%E4%B9%A0%E4%BF%97%E6%AD%A3%E4%B9%89%E8%A7%82</link>
+      <guid isPermaLink="true">https://10knamesmore.github.io/post/%E7%90%86%E6%83%B3%E5%9B%BD%E7%AC%94%E8%AE%B0-%E4%B8%80-%E4%B9%A0%E4%BF%97%E6%AD%A3%E4%B9%89%E8%A7%82</guid>
+      <pubDate>Tue, 24 Sep 2024 19:53:30 GMT</pubDate>
+      <description>1.对话场景
+
+昨天: 时间?
+
+回忆
+
+斐多篇(by 柏拉图):灵魂进入肉身后受肉身诱惑阻碍,学习就是逐渐回忆,被遗忘的灵魂,目的是回到灵魂()
+
+认为 理想国也为类似上文灵魂的地位
+
+港口: 地点
+
+开放,思想交流之地
+
+以探讨激进,严肃的话题成为可能
+
+反面说明对当下不满(参考成书环境)
+
+&gt; 《理想国》写于雅典经历了伯罗奔尼撒战争（公元前431-404年）后的时期。雅典在这场战争中战败，失...</description>
+    </item>
+    <item>
+      <title>随想</title>
+      <link>https://10knamesmore.github.io/post/%E9%9A%8F%E6%83%B3</link>
+      <guid isPermaLink="true">https://10knamesmore.github.io/post/%E9%9A%8F%E6%83%B3</guid>
+      <pubDate>Sun, 01 Sep 2024 21:54:44 GMT</pubDate>
+      <description>想象一个几乎空白的领域,一群开拓者(或者说投机者)发现此地,利用这种信息差传入了些接受的理论,并以这种理论创造了属于自己的一套评价体系.原始积累的过程就不细说了.任何新来者想要了解这一领域,最方便的渠道就是接触到这内部环境中已经建立好的评价体系.所谓&quot;庸俗&quot;就类似一个多层过滤的体系中处于最上方,又面积最大的一层筛子.庸俗不单单是一个大而广的抽象概念,它也可以是一个个不同领域的具体的审美倾向,一系列...</description>
+    </item>
+    <item>
+      <title>最说人话的Vim编辑器入门博客(一)</title>
+      <link>https://10knamesmore.github.io/post/%E6%9C%80%E8%AF%B4%E4%BA%BA%E8%AF%9D%E7%9A%84Vim%E7%BC%96%E8%BE%91%E5%99%A8%E5%85%A5%E9%97%A8%E5%8D%9A%E5%AE%A2-%E4%B8%80</link>
+      <guid isPermaLink="true">https://10knamesmore.github.io/post/%E6%9C%80%E8%AF%B4%E4%BA%BA%E8%AF%9D%E7%9A%84Vim%E7%BC%96%E8%BE%91%E5%99%A8%E5%85%A5%E9%97%A8%E5%8D%9A%E5%AE%A2-%E4%B8%80</guid>
+      <pubDate>Wed, 28 Aug 2024 20:52:09 GMT</pubDate>
+      <description>这是一个面向几乎零基础(像我刚学那样)人群的博客,所以会有点啰嗦
+写下来的东西都是我在学习过程中想到的,希望也能分享出来
+
+相信你经常刷到,网络上很多言论如
+
+&gt; &quot;vim就是世界上最牛逼的编辑器&quot;
+&gt;
+&gt; &quot;vim配置好能提高xx倍效率&quot;
+&gt;
+&gt; &quot;没学过vim不配成为程序员&quot;
+
+就算你不是个geek,肯定多少都会好奇,这些老毕登说的上古神器vim到底是个什么东西.😡
+
+也有很多人第一次打开v...</description>
+    </item>
+    <item>
+      <title>第一卷胶卷</title>
+      <link>https://10knamesmore.github.io/post/%E7%AC%AC%E4%B8%80%E5%8D%B7%E8%83%B6%E5%8D%B7</link>
+      <guid isPermaLink="true">https://10knamesmore.github.io/post/%E7%AC%AC%E4%B8%80%E5%8D%B7%E8%83%B6%E5%8D%B7</guid>
+      <pubDate>Wed, 28 Aug 2024 10:58:00 GMT</pubDate>
+      <description>2021，还在用我的sony nex6 with 七工匠55mm 1.4.我知道这不是必然，但高中的我在这穷酸配置上用习惯了，再加上很幸运.&quot;混&quot;的那些社群都不是器材党,风光党(当时只有一些十分浅薄的理解,认为这样的审美倾向是有问题的,之后可能会发些blog说说现在对这些大行其道的趋势的想法). 最后没有活成整天对G大师镜头流口水的样子.
+
+如果用中性点的词说的话,当时我审美偏向所谓&quot;新锐&quot;,&quot;个...</description>
+    </item>
+  </channel>
+</rss>
