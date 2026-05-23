@@ -21,7 +21,7 @@
 - TypeScript 5.9
 - Vite 7
 - React Router 7
-- 纯 CSS（无框架）
+- SCSS + CSS Modules（无 UI 框架）
 - pnpm
 
 ## 📦 项目结构
@@ -40,7 +40,7 @@ wanger-blog/
 │   ├── utils/            # 工具函数
 │   └── types/            # 类型定义
 ├── scripts/              # 构建脚本
-│   └── parse-posts.mjs   # Markdown 解析器
+│   └── parse-posts.ts     # Markdown 解析器
 ├── public/               # 静态资源
 │   ├── data/            # 生成的 JSON 数据
 │   └── images/          # 复制的图片
@@ -143,18 +143,19 @@ pnpm run build
 
 ### 修改样式
 
-所有样式在各组件的 `.css` 文件中：
+样式采用 SCSS + CSS Modules，每个组件配套一个 `.module.scss`：
 
-- 全局: `src/App.css`, `src/index.css`
-- Header: `src/components/layout/Header.css`
-- 文章卡片: `src/components/common/PostCard.css`
-- Markdown: `src/components/common/MarkdownRenderer.css`
+- 全局: `src/index.scss`, `src/App.module.scss`
+- 共享变量 / mixin: `src/styles/_variables.scss`, `src/styles/_mixins.scss`
+- Header: `src/components/layout/Header.module.scss`
+- 文章卡片: `src/components/common/PostCard.module.scss`
+- Markdown: `src/components/common/MarkdownRenderer.module.scss`
 
 ### 修改配置
 
 - 网站标题: `src/components/layout/Header.tsx`
 - 分页数量: `src/pages/Home.tsx` 中的 `POSTS_PER_PAGE`
-- 摘要长度: `scripts/parse-posts.mjs` 中的 `generateExcerpt`
+- 摘要长度: `scripts/parse-posts.ts` 中的 `generateExcerpt`
 
 ## 🔧 架构设计
 
@@ -183,8 +184,6 @@ React Components
 - MDX（在 Markdown 中使用 React 组件）
 - 自定义组件标记
 - 交互式代码演示
-
-详见 [EXTENSION_ARCHITECTURE.md](./EXTENSION_ARCHITECTURE.md)
 
 ## 📊 特色功能
 
